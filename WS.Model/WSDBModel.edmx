@@ -1,0 +1,1231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WSDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account_QRCode_Template">
+          <Key>
+            <PropertyRef Name="ATID" />
+          </Key>
+          <Property Name="ATID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AccountID" Type="uniqueidentifier" />
+          <Property Name="TemplateID" Type="uniqueidentifier" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="QRCodeBgImg" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CashCouponRecords">
+          <Key>
+            <PropertyRef Name="CashCouponID" />
+          </Key>
+          <Property Name="CashCouponID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Mch_Billno" Type="nvarchar" MaxLength="50" />
+          <Property Name="CashAmount" Type="int" />
+          <Property Name="SendTime" Type="datetime" />
+          <Property Name="ResultCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResultMessage" Type="nvarchar" MaxLength="50" />
+          <Property Name="CostScore" Type="int" />
+          <Property Name="SubscribeID" Type="uniqueidentifier" />
+          <Property Name="AccountID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="GoodID" />
+          </Key>
+          <Property Name="GoodID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GoodName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar" MaxLength="100" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="AccountID" Type="uniqueidentifier" />
+          <Property Name="Price" Type="float" />
+          <Property Name="CostScore" Type="int" />
+          <Property Name="Count" Type="int" />
+          <Property Name="UserID" Type="uniqueidentifier" />
+          <Property Name="SendWayID" Type="uniqueidentifier" />
+          <Property Name="GetAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPhone" Type="nvarchar" MaxLength="20" />
+          <Property Name="GoodLink" Type="nvarchar" MaxLength="100" />
+          <Property Name="CategoryID" Type="uniqueidentifier" />
+          <Property Name="IsSelling" Type="bit" />
+        </EntityType>
+        <EntityType Name="Goods_Categorys">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="20" />
+          <Property Name="CategoryDescription" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="Goods_SendWays">
+          <Key>
+            <PropertyRef Name="SendWayID" />
+          </Key>
+          <Property Name="SendWayID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SendWayName" Type="nvarchar" MaxLength="20" />
+          <Property Name="SendWayOrder" Type="int" />
+        </EntityType>
+        <EntityType Name="OfficialAccounts">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="WeiXinName" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="OriginalID" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="WeiXinNumber" Type="nvarchar" MaxLength="64" />
+          <Property Name="AppID" Type="nvarchar" MaxLength="64" />
+          <Property Name="AppSecret" Type="nvarchar" MaxLength="64" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="UserID" Type="uniqueidentifier" />
+          <Property Name="IsConfigure" Type="bit" />
+          <Property Name="QRCodeBgImg" Type="nvarchar" MaxLength="100" />
+          <Property Name="SubscribeAddScore" Type="int" />
+          <Property Name="UnSubscribeReduceScore" Type="int" />
+          <Property Name="SubscribeWelcome" Type="nvarchar(max)" />
+          <Property Name="ReSubscribeWelcome" Type="nvarchar(max)" />
+          <Property Name="SignLanguage" Type="nvarchar(max)" />
+          <Property Name="SubscribeParentAddScore" Type="int" />
+          <Property Name="UnSubscribeParentReduceScore" Type="int" />
+          <Property Name="SignAddScore" Type="int" />
+          <Property Name="YouZanIsConfig" Type="bit" />
+          <Property Name="YouZanAppID" Type="nvarchar" MaxLength="64" />
+          <Property Name="YouZanAppSecret" Type="nvarchar" MaxLength="64" />
+          <Property Name="YZIncomeFirstPercent" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="YZIncomeSecondPercent" Type="decimal" Precision="3" Scale="2" />
+          <Property Name="YZIncomeCashLimit" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="WeiXinToken" Type="nvarchar" MaxLength="64" />
+          <Property Name="SignTMsgId" Type="nvarchar" MaxLength="64" />
+          <Property Name="YouZanEnable" Type="bit" />
+          <Property Name="AreaLimit" Type="nvarchar" MaxLength="50" />
+          <Property Name="AreaLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="FirstFansName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SecondFansName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mch_ID" Type="nvarchar" MaxLength="64" />
+          <Property Name="CashCoupon_SendName" Type="nvarchar" MaxLength="32" />
+          <Property Name="CashCoupon_MinScore" Type="int" />
+          <Property Name="CashCoupon_EveryAmount" Type="int" />
+          <Property Name="CashCoupon_Wishing" Type="nvarchar" MaxLength="128" />
+          <Property Name="CashCoupon_ActivityName" Type="nvarchar" MaxLength="32" />
+          <Property Name="CashCoupon_Remark" Type="nvarchar" MaxLength="256" />
+          <Property Name="Mch_API_Password" Type="nvarchar" MaxLength="32" />
+          <Property Name="Mch_Cert_Password" Type="nvarchar" MaxLength="64" />
+          <Property Name="Mch_Cert_Path" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GoodID" Type="uniqueidentifier" />
+          <Property Name="SubscribeID" Type="uniqueidentifier" />
+          <Property Name="Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="ContactPerson" Type="nvarchar" MaxLength="20" />
+          <Property Name="State" Type="nvarchar" MaxLength="20" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="AccountID" Type="uniqueidentifier" />
+          <Property Name="UserID" Type="uniqueidentifier" />
+          <Property Name="ExpressCompany" Type="nvarchar" MaxLength="20" />
+          <Property Name="ExpressNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="QRCode_Templates">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="TemplateName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExampleUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="TemplatePSDUrl" Type="nvarchar" MaxLength="100" />
+          <Property Name="NickName_FontFamily" Type="nvarchar" MaxLength="20" />
+          <Property Name="NickName_FontSize" Type="int" />
+          <Property Name="NickName_FontColor" Type="nvarchar" MaxLength="20" />
+          <Property Name="NickName_FontX" Type="int" />
+          <Property Name="NickName_FontY" Type="int" />
+          <Property Name="HeadImg_X" Type="int" />
+          <Property Name="HeadImg_Y" Type="int" />
+          <Property Name="HeadImg_Width" Type="int" />
+          <Property Name="HeadImg_Height" Type="int" />
+          <Property Name="QRCode_X" Type="int" />
+          <Property Name="QRCode_Y" Type="int" />
+          <Property Name="QRCode_Width" Type="int" />
+          <Property Name="QRCode_Height" Type="int" />
+        </EntityType>
+        <EntityType Name="Subscribes">
+          <Key>
+            <PropertyRef Name="SubscribeID" />
+          </Key>
+          <Property Name="SubscribeID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="NickName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Province" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubscribeTime" Type="datetime" />
+          <Property Name="OpenID" Type="nvarchar" MaxLength="64" />
+          <Property Name="FromOpenID" Type="nvarchar" MaxLength="64" />
+          <Property Name="AccountID" Type="uniqueidentifier" />
+          <Property Name="Sex" Type="int" />
+          <Property Name="HeadImgUrl" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsOK" Type="bit" />
+          <Property Name="UnSubscribeTime" Type="datetime" />
+          <Property Name="Score" Type="int" />
+          <Property Name="Longitude" Type="float" />
+          <Property Name="Latitude" Type="float" />
+          <Property Name="Precision" Type="float" />
+          <Property Name="LocationTime" Type="datetime" />
+          <Property Name="SubscribeNumber" Type="int" />
+          <Property Name="SignScore" Type="int" />
+          <Property Name="DirectScore" Type="int" />
+          <Property Name="IndirectScore" Type="int" />
+          <Property Name="SignLastTime" Type="datetime" />
+          <Property Name="SignContinuityCount" Type="int" />
+          <Property Name="DirectScoreUpdateTime" Type="datetime" />
+          <Property Name="IndirectScoreUpdateTime" Type="datetime" />
+          <Property Name="UnSubscribeCount" Type="int" />
+          <Property Name="ScoreUsed" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PassWord" Type="nvarchar" MaxLength="64" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastLoginIP" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastLoginTime" Type="datetime" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="RoleID" Type="uniqueidentifier" />
+        </EntityType>
+        <EntityType Name="Users_Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RoleDescription" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_Account_QRCode_Template_OfficialAccounts">
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="0..1" />
+          <End Role="Account_QRCode_Template" Type="Self.Account_QRCode_Template" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfficialAccounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Account_QRCode_Template">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_QRCode_Template_QRCode_Templates">
+          <End Role="QRCode_Templates" Type="Self.QRCode_Templates" Multiplicity="0..1" />
+          <End Role="Account_QRCode_Template" Type="Self.Account_QRCode_Template" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QRCode_Templates">
+              <PropertyRef Name="TemplateID" />
+            </Principal>
+            <Dependent Role="Account_QRCode_Template">
+              <PropertyRef Name="TemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CashCouponRecords_OfficialAccounts">
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="0..1" />
+          <End Role="CashCouponRecords" Type="Self.CashCouponRecords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfficialAccounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="CashCouponRecords">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CashCouponRecords_Subscribes">
+          <End Role="Subscribes" Type="Self.Subscribes" Multiplicity="0..1" />
+          <End Role="CashCouponRecords" Type="Self.CashCouponRecords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscribes">
+              <PropertyRef Name="SubscribeID" />
+            </Principal>
+            <Dependent Role="CashCouponRecords">
+              <PropertyRef Name="SubscribeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_GoodsCategorys">
+          <End Role="Goods_Categorys" Type="Self.Goods_Categorys" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods_Categorys">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_OfficialAccounts">
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfficialAccounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_SendWays">
+          <End Role="Goods_SendWays" Type="Self.Goods_SendWays" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods_SendWays">
+              <PropertyRef Name="SendWayID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="SendWayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfficialAccounts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OfficialAccounts">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="GoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_OfficialAccounts">
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfficialAccounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Subscribes">
+          <End Role="Subscribes" Type="Self.Subscribes" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscribes">
+              <PropertyRef Name="SubscribeID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="SubscribeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subscribes_OfficialAccounts">
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="0..1" />
+          <End Role="Subscribes" Type="Self.Subscribes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfficialAccounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Subscribes">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserRoles">
+          <End Role="Users_Roles" Type="Self.Users_Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users_Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WSDBModelStoreContainer">
+          <EntitySet Name="Account_QRCode_Template" EntityType="Self.Account_QRCode_Template" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CashCouponRecords" EntityType="Self.CashCouponRecords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goods_Categorys" EntityType="Self.Goods_Categorys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Goods_SendWays" EntityType="Self.Goods_SendWays" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OfficialAccounts" EntityType="Self.OfficialAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QRCode_Templates" EntityType="Self.QRCode_Templates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subscribes" EntityType="Self.Subscribes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users_Roles" EntityType="Self.Users_Roles" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_QRCode_Template_OfficialAccounts" Association="Self.FK_Account_QRCode_Template_OfficialAccounts">
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+            <End Role="Account_QRCode_Template" EntitySet="Account_QRCode_Template" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_QRCode_Template_QRCode_Templates" Association="Self.FK_Account_QRCode_Template_QRCode_Templates">
+            <End Role="QRCode_Templates" EntitySet="QRCode_Templates" />
+            <End Role="Account_QRCode_Template" EntitySet="Account_QRCode_Template" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CashCouponRecords_OfficialAccounts" Association="Self.FK_CashCouponRecords_OfficialAccounts">
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+            <End Role="CashCouponRecords" EntitySet="CashCouponRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CashCouponRecords_Subscribes" Association="Self.FK_CashCouponRecords_Subscribes">
+            <End Role="Subscribes" EntitySet="Subscribes" />
+            <End Role="CashCouponRecords" EntitySet="CashCouponRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_GoodsCategorys" Association="Self.FK_Goods_GoodsCategorys">
+            <End Role="Goods_Categorys" EntitySet="Goods_Categorys" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_OfficialAccounts" Association="Self.FK_Goods_OfficialAccounts">
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_SendWays" Association="Self.FK_Goods_SendWays">
+            <End Role="Goods_SendWays" EntitySet="Goods_SendWays" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_Users" Association="Self.FK_Goods_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficialAccounts_Users" Association="Self.FK_OfficialAccounts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Goods" Association="Self.FK_Orders_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_OfficialAccounts" Association="Self.FK_Orders_OfficialAccounts">
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Subscribes" Association="Self.FK_Orders_Subscribes">
+            <End Role="Subscribes" EntitySet="Subscribes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subscribes_OfficialAccounts" Association="Self.FK_Subscribes_OfficialAccounts">
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+            <End Role="Subscribes" EntitySet="Subscribes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserRoles" Association="Self.FK_Users_UserRoles">
+            <End Role="Users_Roles" EntitySet="Users_Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WSDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account_QRCode_Template">
+          <Key>
+            <PropertyRef Name="ATID" />
+          </Key>
+          <Property Name="ATID" Type="Guid" Nullable="false" />
+          <Property Name="AccountID" Type="Guid" />
+          <Property Name="TemplateID" Type="Guid" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="QRCodeBgImg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OfficialAccounts" Relationship="Self.FK_Account_QRCode_Template_OfficialAccounts" FromRole="Account_QRCode_Template" ToRole="OfficialAccounts" />
+          <NavigationProperty Name="QRCode_Templates" Relationship="Self.FK_Account_QRCode_Template_QRCode_Templates" FromRole="Account_QRCode_Template" ToRole="QRCode_Templates" />
+        </EntityType>
+        <EntityType Name="CashCouponRecords">
+          <Key>
+            <PropertyRef Name="CashCouponID" />
+          </Key>
+          <Property Name="CashCouponID" Type="Guid" Nullable="false" />
+          <Property Name="Mch_Billno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CashAmount" Type="Int32" />
+          <Property Name="SendTime" Type="DateTime" Precision="3" />
+          <Property Name="ResultCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResultMessage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CostScore" Type="Int32" />
+          <Property Name="SubscribeID" Type="Guid" />
+          <Property Name="AccountID" Type="Guid" />
+          <NavigationProperty Name="OfficialAccounts" Relationship="Self.FK_CashCouponRecords_OfficialAccounts" FromRole="CashCouponRecords" ToRole="OfficialAccounts" />
+          <NavigationProperty Name="Subscribes" Relationship="Self.FK_CashCouponRecords_Subscribes" FromRole="CashCouponRecords" ToRole="Subscribes" />
+        </EntityType>
+        <EntityType Name="Goods">
+          <Key>
+            <PropertyRef Name="GoodID" />
+          </Key>
+          <Property Name="GoodID" Type="Guid" Nullable="false" />
+          <Property Name="GoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="AccountID" Type="Guid" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="CostScore" Type="Int32" />
+          <Property Name="Count" Type="Int32" />
+          <Property Name="UserID" Type="Guid" />
+          <Property Name="SendWayID" Type="Guid" />
+          <Property Name="GetAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GoodLink" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="Guid" />
+          <Property Name="IsSelling" Type="Boolean" />
+          <NavigationProperty Name="Goods_Categorys" Relationship="Self.FK_Goods_GoodsCategorys" FromRole="Goods" ToRole="Goods_Categorys" />
+          <NavigationProperty Name="OfficialAccounts" Relationship="Self.FK_Goods_OfficialAccounts" FromRole="Goods" ToRole="OfficialAccounts" />
+          <NavigationProperty Name="Goods_SendWays" Relationship="Self.FK_Goods_SendWays" FromRole="Goods" ToRole="Goods_SendWays" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Goods_Users" FromRole="Goods" ToRole="Users" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Goods" FromRole="Goods" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Goods_Categorys">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Guid" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryOrder" Type="Int32" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_GoodsCategorys" FromRole="Goods_Categorys" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="Goods_SendWays">
+          <Key>
+            <PropertyRef Name="SendWayID" />
+          </Key>
+          <Property Name="SendWayID" Type="Guid" Nullable="false" />
+          <Property Name="SendWayName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SendWayOrder" Type="Int32" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_SendWays" FromRole="Goods_SendWays" ToRole="Goods" />
+        </EntityType>
+        <EntityType Name="OfficialAccounts">
+          <Key>
+            <PropertyRef Name="AccountID" />
+          </Key>
+          <Property Name="AccountID" Type="Guid" Nullable="false" />
+          <Property Name="WeiXinName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OriginalID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="WeiXinNumber" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="AppID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="AppSecret" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="UserID" Type="Guid" />
+          <Property Name="IsConfigure" Type="Boolean" />
+          <Property Name="QRCodeBgImg" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SubscribeAddScore" Type="Int32" />
+          <Property Name="UnSubscribeReduceScore" Type="Int32" />
+          <Property Name="SubscribeWelcome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ReSubscribeWelcome" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SignLanguage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubscribeParentAddScore" Type="Int32" />
+          <Property Name="UnSubscribeParentReduceScore" Type="Int32" />
+          <Property Name="SignAddScore" Type="Int32" />
+          <Property Name="YouZanIsConfig" Type="Boolean" />
+          <Property Name="YouZanAppID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="YouZanAppSecret" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="YZIncomeFirstPercent" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="YZIncomeSecondPercent" Type="Decimal" Precision="3" Scale="2" />
+          <Property Name="YZIncomeCashLimit" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="WeiXinToken" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="SignTMsgId" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="YouZanEnable" Type="Boolean" />
+          <Property Name="AreaLimit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstFansName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SecondFansName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mch_ID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="CashCoupon_SendName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="CashCoupon_MinScore" Type="Int32" />
+          <Property Name="CashCoupon_EveryAmount" Type="Int32" />
+          <Property Name="CashCoupon_Wishing" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="CashCoupon_ActivityName" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="CashCoupon_Remark" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Mch_API_Password" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Mch_Cert_Password" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Mch_Cert_Path" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Account_QRCode_Template" Relationship="Self.FK_Account_QRCode_Template_OfficialAccounts" FromRole="OfficialAccounts" ToRole="Account_QRCode_Template" />
+          <NavigationProperty Name="CashCouponRecords" Relationship="Self.FK_CashCouponRecords_OfficialAccounts" FromRole="OfficialAccounts" ToRole="CashCouponRecords" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_OfficialAccounts" FromRole="OfficialAccounts" ToRole="Goods" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_OfficialAccounts_Users" FromRole="OfficialAccounts" ToRole="Users" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_OfficialAccounts" FromRole="OfficialAccounts" ToRole="Orders" />
+          <NavigationProperty Name="Subscribes" Relationship="Self.FK_Subscribes_OfficialAccounts" FromRole="OfficialAccounts" ToRole="Subscribes" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Guid" Nullable="false" />
+          <Property Name="GoodID" Type="Guid" />
+          <Property Name="SubscribeID" Type="Guid" />
+          <Property Name="Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPerson" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="AccountID" Type="Guid" />
+          <Property Name="UserID" Type="Guid" />
+          <Property Name="ExpressCompany" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ExpressNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Orders_Goods" FromRole="Orders" ToRole="Goods" />
+          <NavigationProperty Name="OfficialAccounts" Relationship="Self.FK_Orders_OfficialAccounts" FromRole="Orders" ToRole="OfficialAccounts" />
+          <NavigationProperty Name="Subscribes" Relationship="Self.FK_Orders_Subscribes" FromRole="Orders" ToRole="Subscribes" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Orders_Users" FromRole="Orders" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="QRCode_Templates">
+          <Key>
+            <PropertyRef Name="TemplateID" />
+          </Key>
+          <Property Name="TemplateID" Type="Guid" Nullable="false" />
+          <Property Name="TemplateName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExampleUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TemplatePSDUrl" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NickName_FontFamily" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NickName_FontSize" Type="Int32" />
+          <Property Name="NickName_FontColor" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NickName_FontX" Type="Int32" />
+          <Property Name="NickName_FontY" Type="Int32" />
+          <Property Name="HeadImg_X" Type="Int32" />
+          <Property Name="HeadImg_Y" Type="Int32" />
+          <Property Name="HeadImg_Width" Type="Int32" />
+          <Property Name="HeadImg_Height" Type="Int32" />
+          <Property Name="QRCode_X" Type="Int32" />
+          <Property Name="QRCode_Y" Type="Int32" />
+          <Property Name="QRCode_Width" Type="Int32" />
+          <Property Name="QRCode_Height" Type="Int32" />
+          <NavigationProperty Name="Account_QRCode_Template" Relationship="Self.FK_Account_QRCode_Template_QRCode_Templates" FromRole="QRCode_Templates" ToRole="Account_QRCode_Template" />
+        </EntityType>
+        <EntityType Name="Subscribes">
+          <Key>
+            <PropertyRef Name="SubscribeID" />
+          </Key>
+          <Property Name="SubscribeID" Type="Guid" Nullable="false" />
+          <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubscribeTime" Type="DateTime" Precision="3" />
+          <Property Name="OpenID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="FromOpenID" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="AccountID" Type="Guid" />
+          <Property Name="Sex" Type="Int32" />
+          <Property Name="HeadImgUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsOK" Type="Boolean" />
+          <Property Name="UnSubscribeTime" Type="DateTime" Precision="3" />
+          <Property Name="Score" Type="Int32" />
+          <Property Name="Longitude" Type="Double" />
+          <Property Name="Latitude" Type="Double" />
+          <Property Name="Precision" Type="Double" />
+          <Property Name="LocationTime" Type="DateTime" Precision="3" />
+          <Property Name="SubscribeNumber" Type="Int32" />
+          <Property Name="SignScore" Type="Int32" />
+          <Property Name="DirectScore" Type="Int32" />
+          <Property Name="IndirectScore" Type="Int32" />
+          <Property Name="SignLastTime" Type="DateTime" Precision="3" />
+          <Property Name="SignContinuityCount" Type="Int32" />
+          <Property Name="DirectScoreUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="IndirectScoreUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="UnSubscribeCount" Type="Int32" />
+          <Property Name="ScoreUsed" Type="Int32" />
+          <NavigationProperty Name="CashCouponRecords" Relationship="Self.FK_CashCouponRecords_Subscribes" FromRole="Subscribes" ToRole="CashCouponRecords" />
+          <NavigationProperty Name="OfficialAccounts" Relationship="Self.FK_Subscribes_OfficialAccounts" FromRole="Subscribes" ToRole="OfficialAccounts" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Subscribes" FromRole="Subscribes" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PassWord" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastLoginIP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastLoginTime" Type="DateTime" Precision="3" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="RoleID" Type="Guid" />
+          <NavigationProperty Name="Goods" Relationship="Self.FK_Goods_Users" FromRole="Users" ToRole="Goods" />
+          <NavigationProperty Name="OfficialAccounts" Relationship="Self.FK_OfficialAccounts_Users" FromRole="Users" ToRole="OfficialAccounts" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Users" FromRole="Users" ToRole="Orders" />
+          <NavigationProperty Name="Users_Roles" Relationship="Self.FK_Users_UserRoles" FromRole="Users" ToRole="Users_Roles" />
+        </EntityType>
+        <EntityType Name="Users_Roles">
+          <Key>
+            <PropertyRef Name="RoleID" />
+          </Key>
+          <Property Name="RoleID" Type="Guid" Nullable="false" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RoleDescription" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_UserRoles" FromRole="Users_Roles" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK_Account_QRCode_Template_OfficialAccounts">
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="0..1" />
+          <End Role="Account_QRCode_Template" Type="Self.Account_QRCode_Template" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfficialAccounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Account_QRCode_Template">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Account_QRCode_Template_QRCode_Templates">
+          <End Role="QRCode_Templates" Type="Self.QRCode_Templates" Multiplicity="0..1" />
+          <End Role="Account_QRCode_Template" Type="Self.Account_QRCode_Template" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QRCode_Templates">
+              <PropertyRef Name="TemplateID" />
+            </Principal>
+            <Dependent Role="Account_QRCode_Template">
+              <PropertyRef Name="TemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CashCouponRecords_OfficialAccounts">
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="0..1" />
+          <End Role="CashCouponRecords" Type="Self.CashCouponRecords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfficialAccounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="CashCouponRecords">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CashCouponRecords_Subscribes">
+          <End Role="Subscribes" Type="Self.Subscribes" Multiplicity="0..1" />
+          <End Role="CashCouponRecords" Type="Self.CashCouponRecords" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscribes">
+              <PropertyRef Name="SubscribeID" />
+            </Principal>
+            <Dependent Role="CashCouponRecords">
+              <PropertyRef Name="SubscribeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_GoodsCategorys">
+          <End Role="Goods_Categorys" Type="Self.Goods_Categorys" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods_Categorys">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_OfficialAccounts">
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfficialAccounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_SendWays">
+          <End Role="Goods_SendWays" Type="Self.Goods_SendWays" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods_SendWays">
+              <PropertyRef Name="SendWayID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="SendWayID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Goods_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Goods" Type="Self.Goods" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Goods">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Goods">
+          <End Role="Goods" Type="Self.Goods" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Goods">
+              <PropertyRef Name="GoodID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="GoodID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OfficialAccounts_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OfficialAccounts">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_OfficialAccounts">
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfficialAccounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Subscribes_OfficialAccounts">
+          <End Role="OfficialAccounts" Type="Self.OfficialAccounts" Multiplicity="0..1" />
+          <End Role="Subscribes" Type="Self.Subscribes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OfficialAccounts">
+              <PropertyRef Name="AccountID" />
+            </Principal>
+            <Dependent Role="Subscribes">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Subscribes">
+          <End Role="Subscribes" Type="Self.Subscribes" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subscribes">
+              <PropertyRef Name="SubscribeID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="SubscribeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_UserRoles">
+          <End Role="Users_Roles" Type="Self.Users_Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users_Roles">
+              <PropertyRef Name="RoleID" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WSDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Account_QRCode_Template" EntityType="Self.Account_QRCode_Template" />
+          <EntitySet Name="CashCouponRecords" EntityType="Self.CashCouponRecords" />
+          <EntitySet Name="Goods" EntityType="Self.Goods" />
+          <EntitySet Name="Goods_Categorys" EntityType="Self.Goods_Categorys" />
+          <EntitySet Name="Goods_SendWays" EntityType="Self.Goods_SendWays" />
+          <EntitySet Name="OfficialAccounts" EntityType="Self.OfficialAccounts" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" />
+          <EntitySet Name="QRCode_Templates" EntityType="Self.QRCode_Templates" />
+          <EntitySet Name="Subscribes" EntityType="Self.Subscribes" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="Users_Roles" EntityType="Self.Users_Roles" />
+          <AssociationSet Name="FK_Account_QRCode_Template_OfficialAccounts" Association="Self.FK_Account_QRCode_Template_OfficialAccounts">
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+            <End Role="Account_QRCode_Template" EntitySet="Account_QRCode_Template" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Account_QRCode_Template_QRCode_Templates" Association="Self.FK_Account_QRCode_Template_QRCode_Templates">
+            <End Role="QRCode_Templates" EntitySet="QRCode_Templates" />
+            <End Role="Account_QRCode_Template" EntitySet="Account_QRCode_Template" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CashCouponRecords_OfficialAccounts" Association="Self.FK_CashCouponRecords_OfficialAccounts">
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+            <End Role="CashCouponRecords" EntitySet="CashCouponRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CashCouponRecords_Subscribes" Association="Self.FK_CashCouponRecords_Subscribes">
+            <End Role="Subscribes" EntitySet="Subscribes" />
+            <End Role="CashCouponRecords" EntitySet="CashCouponRecords" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_GoodsCategorys" Association="Self.FK_Goods_GoodsCategorys">
+            <End Role="Goods_Categorys" EntitySet="Goods_Categorys" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_OfficialAccounts" Association="Self.FK_Goods_OfficialAccounts">
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_SendWays" Association="Self.FK_Goods_SendWays">
+            <End Role="Goods_SendWays" EntitySet="Goods_SendWays" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Goods_Users" Association="Self.FK_Goods_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Goods" EntitySet="Goods" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Goods" Association="Self.FK_Orders_Goods">
+            <End Role="Goods" EntitySet="Goods" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OfficialAccounts_Users" Association="Self.FK_OfficialAccounts_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_OfficialAccounts" Association="Self.FK_Orders_OfficialAccounts">
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Subscribes_OfficialAccounts" Association="Self.FK_Subscribes_OfficialAccounts">
+            <End Role="OfficialAccounts" EntitySet="OfficialAccounts" />
+            <End Role="Subscribes" EntitySet="Subscribes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Subscribes" Association="Self.FK_Orders_Subscribes">
+            <End Role="Subscribes" EntitySet="Subscribes" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Users" Association="Self.FK_Orders_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_UserRoles" Association="Self.FK_Users_UserRoles">
+            <End Role="Users_Roles" EntitySet="Users_Roles" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WSDBModelStoreContainer" CdmEntityContainer="WSDBEntities">
+          <EntitySetMapping Name="Account_QRCode_Template">
+            <EntityTypeMapping TypeName="WSDBModel.Account_QRCode_Template">
+              <MappingFragment StoreEntitySet="Account_QRCode_Template">
+                <ScalarProperty Name="ATID" ColumnName="ATID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="QRCodeBgImg" ColumnName="QRCodeBgImg" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CashCouponRecords">
+            <EntityTypeMapping TypeName="WSDBModel.CashCouponRecords">
+              <MappingFragment StoreEntitySet="CashCouponRecords">
+                <ScalarProperty Name="CashCouponID" ColumnName="CashCouponID" />
+                <ScalarProperty Name="Mch_Billno" ColumnName="Mch_Billno" />
+                <ScalarProperty Name="CashAmount" ColumnName="CashAmount" />
+                <ScalarProperty Name="SendTime" ColumnName="SendTime" />
+                <ScalarProperty Name="ResultCode" ColumnName="ResultCode" />
+                <ScalarProperty Name="ResultMessage" ColumnName="ResultMessage" />
+                <ScalarProperty Name="CostScore" ColumnName="CostScore" />
+                <ScalarProperty Name="SubscribeID" ColumnName="SubscribeID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goods">
+            <EntityTypeMapping TypeName="WSDBModel.Goods">
+              <MappingFragment StoreEntitySet="Goods">
+                <ScalarProperty Name="GoodID" ColumnName="GoodID" />
+                <ScalarProperty Name="GoodName" ColumnName="GoodName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="CostScore" ColumnName="CostScore" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="SendWayID" ColumnName="SendWayID" />
+                <ScalarProperty Name="GetAddress" ColumnName="GetAddress" />
+                <ScalarProperty Name="ContactPhone" ColumnName="ContactPhone" />
+                <ScalarProperty Name="GoodLink" ColumnName="GoodLink" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="IsSelling" ColumnName="IsSelling" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goods_Categorys">
+            <EntityTypeMapping TypeName="WSDBModel.Goods_Categorys">
+              <MappingFragment StoreEntitySet="Goods_Categorys">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+                <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
+                <ScalarProperty Name="CategoryOrder" ColumnName="CategoryOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Goods_SendWays">
+            <EntityTypeMapping TypeName="WSDBModel.Goods_SendWays">
+              <MappingFragment StoreEntitySet="Goods_SendWays">
+                <ScalarProperty Name="SendWayID" ColumnName="SendWayID" />
+                <ScalarProperty Name="SendWayName" ColumnName="SendWayName" />
+                <ScalarProperty Name="SendWayOrder" ColumnName="SendWayOrder" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OfficialAccounts">
+            <EntityTypeMapping TypeName="WSDBModel.OfficialAccounts">
+              <MappingFragment StoreEntitySet="OfficialAccounts">
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="WeiXinName" ColumnName="WeiXinName" />
+                <ScalarProperty Name="OriginalID" ColumnName="OriginalID" />
+                <ScalarProperty Name="WeiXinNumber" ColumnName="WeiXinNumber" />
+                <ScalarProperty Name="AppID" ColumnName="AppID" />
+                <ScalarProperty Name="AppSecret" ColumnName="AppSecret" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="IsConfigure" ColumnName="IsConfigure" />
+                <ScalarProperty Name="QRCodeBgImg" ColumnName="QRCodeBgImg" />
+                <ScalarProperty Name="SubscribeAddScore" ColumnName="SubscribeAddScore" />
+                <ScalarProperty Name="UnSubscribeReduceScore" ColumnName="UnSubscribeReduceScore" />
+                <ScalarProperty Name="SubscribeWelcome" ColumnName="SubscribeWelcome" />
+                <ScalarProperty Name="ReSubscribeWelcome" ColumnName="ReSubscribeWelcome" />
+                <ScalarProperty Name="SignLanguage" ColumnName="SignLanguage" />
+                <ScalarProperty Name="SubscribeParentAddScore" ColumnName="SubscribeParentAddScore" />
+                <ScalarProperty Name="UnSubscribeParentReduceScore" ColumnName="UnSubscribeParentReduceScore" />
+                <ScalarProperty Name="SignAddScore" ColumnName="SignAddScore" />
+                <ScalarProperty Name="YouZanIsConfig" ColumnName="YouZanIsConfig" />
+                <ScalarProperty Name="YouZanAppID" ColumnName="YouZanAppID" />
+                <ScalarProperty Name="YouZanAppSecret" ColumnName="YouZanAppSecret" />
+                <ScalarProperty Name="YZIncomeFirstPercent" ColumnName="YZIncomeFirstPercent" />
+                <ScalarProperty Name="YZIncomeSecondPercent" ColumnName="YZIncomeSecondPercent" />
+                <ScalarProperty Name="YZIncomeCashLimit" ColumnName="YZIncomeCashLimit" />
+                <ScalarProperty Name="WeiXinToken" ColumnName="WeiXinToken" />
+                <ScalarProperty Name="SignTMsgId" ColumnName="SignTMsgId" />
+                <ScalarProperty Name="YouZanEnable" ColumnName="YouZanEnable" />
+                <ScalarProperty Name="AreaLimit" ColumnName="AreaLimit" />
+                <ScalarProperty Name="AreaLevel" ColumnName="AreaLevel" />
+                <ScalarProperty Name="FirstFansName" ColumnName="FirstFansName" />
+                <ScalarProperty Name="SecondFansName" ColumnName="SecondFansName" />
+                <ScalarProperty Name="Mch_ID" ColumnName="Mch_ID" />
+                <ScalarProperty Name="CashCoupon_SendName" ColumnName="CashCoupon_SendName" />
+                <ScalarProperty Name="CashCoupon_MinScore" ColumnName="CashCoupon_MinScore" />
+                <ScalarProperty Name="CashCoupon_EveryAmount" ColumnName="CashCoupon_EveryAmount" />
+                <ScalarProperty Name="CashCoupon_Wishing" ColumnName="CashCoupon_Wishing" />
+                <ScalarProperty Name="CashCoupon_ActivityName" ColumnName="CashCoupon_ActivityName" />
+                <ScalarProperty Name="CashCoupon_Remark" ColumnName="CashCoupon_Remark" />
+                <ScalarProperty Name="Mch_API_Password" ColumnName="Mch_API_Password" />
+                <ScalarProperty Name="Mch_Cert_Password" ColumnName="Mch_Cert_Password" />
+                <ScalarProperty Name="Mch_Cert_Path" ColumnName="Mch_Cert_Path" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="WSDBModel.Orders">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="GoodID" ColumnName="GoodID" />
+                <ScalarProperty Name="SubscribeID" ColumnName="SubscribeID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="ExpressCompany" ColumnName="ExpressCompany" />
+                <ScalarProperty Name="ExpressNumber" ColumnName="ExpressNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QRCode_Templates">
+            <EntityTypeMapping TypeName="WSDBModel.QRCode_Templates">
+              <MappingFragment StoreEntitySet="QRCode_Templates">
+                <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+                <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+                <ScalarProperty Name="ExampleUrl" ColumnName="ExampleUrl" />
+                <ScalarProperty Name="TemplatePSDUrl" ColumnName="TemplatePSDUrl" />
+                <ScalarProperty Name="NickName_FontFamily" ColumnName="NickName_FontFamily" />
+                <ScalarProperty Name="NickName_FontSize" ColumnName="NickName_FontSize" />
+                <ScalarProperty Name="NickName_FontColor" ColumnName="NickName_FontColor" />
+                <ScalarProperty Name="NickName_FontX" ColumnName="NickName_FontX" />
+                <ScalarProperty Name="NickName_FontY" ColumnName="NickName_FontY" />
+                <ScalarProperty Name="HeadImg_X" ColumnName="HeadImg_X" />
+                <ScalarProperty Name="HeadImg_Y" ColumnName="HeadImg_Y" />
+                <ScalarProperty Name="HeadImg_Width" ColumnName="HeadImg_Width" />
+                <ScalarProperty Name="HeadImg_Height" ColumnName="HeadImg_Height" />
+                <ScalarProperty Name="QRCode_X" ColumnName="QRCode_X" />
+                <ScalarProperty Name="QRCode_Y" ColumnName="QRCode_Y" />
+                <ScalarProperty Name="QRCode_Width" ColumnName="QRCode_Width" />
+                <ScalarProperty Name="QRCode_Height" ColumnName="QRCode_Height" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subscribes">
+            <EntityTypeMapping TypeName="WSDBModel.Subscribes">
+              <MappingFragment StoreEntitySet="Subscribes">
+                <ScalarProperty Name="SubscribeID" ColumnName="SubscribeID" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Province" ColumnName="Province" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="SubscribeTime" ColumnName="SubscribeTime" />
+                <ScalarProperty Name="OpenID" ColumnName="OpenID" />
+                <ScalarProperty Name="FromOpenID" ColumnName="FromOpenID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="HeadImgUrl" ColumnName="HeadImgUrl" />
+                <ScalarProperty Name="IsOK" ColumnName="IsOK" />
+                <ScalarProperty Name="UnSubscribeTime" ColumnName="UnSubscribeTime" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Precision" ColumnName="Precision" />
+                <ScalarProperty Name="LocationTime" ColumnName="LocationTime" />
+                <ScalarProperty Name="SubscribeNumber" ColumnName="SubscribeNumber" />
+                <ScalarProperty Name="SignScore" ColumnName="SignScore" />
+                <ScalarProperty Name="DirectScore" ColumnName="DirectScore" />
+                <ScalarProperty Name="IndirectScore" ColumnName="IndirectScore" />
+                <ScalarProperty Name="SignLastTime" ColumnName="SignLastTime" />
+                <ScalarProperty Name="SignContinuityCount" ColumnName="SignContinuityCount" />
+                <ScalarProperty Name="DirectScoreUpdateTime" ColumnName="DirectScoreUpdateTime" />
+                <ScalarProperty Name="IndirectScoreUpdateTime" ColumnName="IndirectScoreUpdateTime" />
+                <ScalarProperty Name="UnSubscribeCount" ColumnName="UnSubscribeCount" />
+                <ScalarProperty Name="ScoreUsed" ColumnName="ScoreUsed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="WSDBModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WSDBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="LastLoginIP" ColumnName="LastLoginIP" />
+                <ScalarProperty Name="LastLoginTime" ColumnName="LastLoginTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users_Roles">
+            <EntityTypeMapping TypeName="WSDBModel.Users_Roles">
+              <MappingFragment StoreEntitySet="Users_Roles">
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleDescription" ColumnName="RoleDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

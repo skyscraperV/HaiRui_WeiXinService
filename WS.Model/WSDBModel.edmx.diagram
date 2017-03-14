@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7ae075fff728491ab395b3080405c0c2" Name="Diagram1">
+        <EntityTypeShape EntityType="WSDBModel.Account_QRCode_Template" Width="1.5" PointX="10.5" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.CashCouponRecords" Width="1.5" PointX="9.75" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.Goods" Width="1.5" PointX="7.5" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.Goods_Categorys" Width="1.5" PointX="5.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.Goods_SendWays" Width="1.5" PointX="5.25" PointY="23.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.OfficialAccounts" Width="1.5" PointX="5.25" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.Orders" Width="1.5" PointX="12.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.QRCode_Templates" Width="1.5" PointX="8.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.Subscribes" Width="1.5" PointX="7.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.Users" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="WSDBModel.Users_Roles" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <AssociationConnector Association="WSDBModel.FK_Account_QRCode_Template_OfficialAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Account_QRCode_Template_QRCode_Templates" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_CashCouponRecords_OfficialAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_CashCouponRecords_Subscribes" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Goods_GoodsCategorys" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Goods_OfficialAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Goods_SendWays" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Goods_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Orders_Goods" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_OfficialAccounts_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Orders_OfficialAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Subscribes_OfficialAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Orders_Subscribes" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Orders_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="WSDBModel.FK_Users_UserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
