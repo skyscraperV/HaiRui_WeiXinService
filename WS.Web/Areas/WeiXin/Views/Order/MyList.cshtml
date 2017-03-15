@@ -1,0 +1,75 @@
+﻿@model IEnumerable<WS.Model.Orders>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>我的订单</title>
+    @Styles.Render("~/Content/bootstrap")
+
+    @Scripts.Render("~/bundles/modernizr")
+    <style type="text/css">
+        .table1 td {
+            vertical-align: middle;
+            padding: 5px;
+        }
+
+        .table2 td {
+            vertical-align: middle;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body style="background-color: #f3f2ee;">
+
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">我的订单</div>
+
+        <ul class="list-group list-group" style="background-color: #f3f2ee;">
+            @foreach (var item in Model)
+            {
+                <li class="list-group-item" style="margin-top: 10px; background-color: white; border: none !important;">
+                    <a href="~/WeiXin/Order/Details?orderid=@item.OrderID">
+
+
+                        <table class="table1" style="width: 100%;border-bottom:1px solid rgba(128, 128, 128, 0.27)">
+                            <tr>
+                                <td>
+                                    <img class="img-rounded" src="@Html.QiNiuImage(item.Goods.Image, 50, 50)" />
+
+                                </td>
+                                <td style="text-align: right;font-size:1.5em;">
+                                    @item.Goods.GoodName
+                                </td>
+                            </tr>
+                        </table>
+                        <table class="table2" style="width: 100%;">
+                            <tr>
+                                <td>
+                                    花费积分：@item.Goods.CostScore
+                                </td>
+                                <td style="text-align: right; color: #d9440c;">
+                                    @item.State
+                                </td>
+                            </tr>
+
+                        </table>
+                    </a>
+                </li>
+            }
+
+        </ul>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

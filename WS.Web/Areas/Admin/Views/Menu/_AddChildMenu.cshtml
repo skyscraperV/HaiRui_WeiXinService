@@ -1,0 +1,8 @@
+﻿@model WS.Model.OfficialAccounts
+
+<div class="childmenu_item" id="childmenu_@ViewBag.ChildId">
+    <input id="childmenu_input_@ViewBag.ChildId" value="" placeholder="请输入事件key或者链接url" data-type="click" data-key="@ViewBag.ChildId" type="text" class="childmenu_input form-control" />
+    <span class="glyphicon glyphicon-move"></span> |
+    <a class="btn btn-link  btn-set-click" data-menutarget="childmenu_input_@ViewBag.ChildId">设置菜单动作</a> |
+    <a class="btn btn-link btn-delete-click" data-menutarget="childmenu_@ViewBag.ChildId">删除菜单</a>
+</div>

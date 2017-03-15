@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26228.9
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WS.Web", "WS.Web\WS.Web.csproj", "{4D2C4BCA-316E-4773-B8F0-6D887B1FA932}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WS.Extension", "WS.Extension\WS.Extension.csproj", "{78CB98F4-4477-41E4-BA59-5E07E2B3BD53}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WS.ViewModel", "WS.ViewModel\WS.ViewModel.csproj", "{8AFFB2E7-72E2-499C-96CE-89A280FD7AD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WS.Handler", "WS.Handler\WS.Handler.csproj", "{B3A4743C-A789-4139-81C5-A8FD6C491A42}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{8AFFB2E7-72E2-499C-96CE-89A280FD7AD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AFFB2E7-72E2-499C-96CE-89A280FD7AD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AFFB2E7-72E2-499C-96CE-89A280FD7AD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3A4743C-A789-4139-81C5-A8FD6C491A42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3A4743C-A789-4139-81C5-A8FD6C491A42}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3A4743C-A789-4139-81C5-A8FD6C491A42}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3A4743C-A789-4139-81C5-A8FD6C491A42}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

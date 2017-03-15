@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WS.Model.Subscribes>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Test</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table>
+        <tr>
+         
+            <th>
+                @Html.DisplayNameFor(model => model.NickName)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.SubscribeTime)
+            </th>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Score)
+            </th>
+            
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.NickName)
+            </td>
+         
+            <td>
+                @Html.DisplayFor(modelItem => item.SubscribeTime)
+            </td>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.Score)
+            </td>
+            
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

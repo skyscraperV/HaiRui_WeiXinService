@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta name="viewport" id="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/bootstrap")
+    <style type="text/css">
+        table th, table td {
+            text-align: center;
+            padding: 5px;
+        }
+    </style>
+
+</head>
+<body>
+   @Html.Action("_LayoutHeader", "Income", new { Area = "WeiXin", SubscribeID = ViewBag.SubscribeID, IncomeSum = @ViewBag.IncomeSum })
+<div class="container-fluid">
+    @RenderBody()
+</div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

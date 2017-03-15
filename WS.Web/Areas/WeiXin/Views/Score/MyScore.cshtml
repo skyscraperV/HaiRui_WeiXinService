@@ -1,0 +1,63 @@
+﻿
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>我的积分</title>
+    @Styles.Render("~/Content/bootstrap")
+</head>
+<body>
+
+    <div class="jumbotron" style="background-color: #ed5353; color: white; padding: 15px; margin-bottom: 0;">
+        <h1 class="timerscore" style="font-size:4em;" data-from="0" data-to="@ViewBag.MyScore" data-speed="2000"></h1>
+        <p style="font-size:1em;">小积分，有大用，多领一些囤起来！</p>
+        @* <img width="50" height="50" src="@Model.HeadImgUrl"/>*@
+    </div>
+<table class="table">
+    <thead>
+    <tr style="height: 50px;">
+        <th class="text-center " style="vertical-align: middle;">我的粉丝</th>
+        <th class="text-center " style="vertical-align: middle;"></th>
+
+        <th class="text-center " style="vertical-align: middle;">更多</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in ViewBag.FansList as List<WS.Model.Subscribes>)
+    {
+        <tr>
+            <td class="text-center " style="vertical-align: middle;"><img width="50" height="50" src="@item.HeadImgUrl"/></td>
+            <td class="text-center " style="vertical-align: middle;">
+                <span style="font-size: 1.2em;">@item.NickName</span>
+                <br/>
+                <span style="font-size: 0.8em; color: #808080">@item.SubscribeTime</span>
+            </td>
+            <td class="text-center " style="vertical-align: middle; font-size: 2em; color: #f15353">+5</td>
+
+        </tr>
+
+    }
+    </tbody>
+
+
+
+</table>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script src="~/Scripts/jquery.countTo.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $(".timerscore").countTo();
+    });
+    </script>
+</body>
+</html>

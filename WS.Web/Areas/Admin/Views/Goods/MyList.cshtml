@@ -1,0 +1,123 @@
+﻿@model IEnumerable<WS.ViewModel.Goods_ViewModel>
+
+@{
+    ViewBag.Title = "商品管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    .table td {
+        vertical-align: middle !important;
+    }
+</style>
+<br />
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li class="active"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;商品管理</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        商品列表
+        @Html.ActionLink("添加商品", "Add", "Goods", new { Area = "Admin" }, new { @class = "pull-right" })
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table  table-striped">
+                <thead>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.GoodName)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.Image)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreateTime)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.AccountID)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Price)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CostScore)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Count)
+                        </th>
+
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.GoodName)
+                            </td>
+
+                            <td>
+                                <img src="@Html.QiNiuImage(item.Image,100,100)" />
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreateTime)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AccountID)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Price)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CostScore)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Count)
+                            </td>
+                            <td id="statediv-@item.GoodID">
+                                @if ((bool)item.IsSelling)
+                                {
+
+                                    @Ajax.ActionLink("下架", "_SetSellState", new { GoodID = item.GoodID, IsSelling = false }, new AjaxOptions
+                                        {
+                                            UpdateTargetId = "statediv-" + item.GoodID,
+                                            InsertionMode = InsertionMode.Replace
+                                        }, new { @class = "btn btn-success" })
+                                }
+                                else
+                                {
+
+                                    @Ajax.ActionLink("上架", "_SetSellState", new { GoodID = item.GoodID, IsSelling = true }, new AjaxOptions
+                                        {
+                                            UpdateTargetId = "statediv-" + item.GoodID,
+                                            InsertionMode = InsertionMode.Replace
+                                        }, new { @class = "btn btn-danger" })
+
+
+
+
+                                }
+                            </td>
+                            <td>
+                                @Html.ActionLink("编辑", "Edit", new { id = item.GoodID }) |
+                                @Html.ActionLink("明细", "Details", new { id = item.GoodID }) |
+                              @*  @Html.ActionLink("删除", "Delete", new { id = item.GoodID })*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

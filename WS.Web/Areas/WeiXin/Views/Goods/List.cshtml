@@ -1,0 +1,82 @@
+﻿@model IEnumerable<WS.ViewModel.Goods_ViewModel>
+
+@{
+    ViewBag.Title = "积分商城";
+    Layout = "~/Areas/WeiXin/Views/Shared/_Layout.cshtml";
+}
+
+
+@*<div class="row">
+    <div class="col-xs-6">
+        <a href="~/WeiXin/Score/MyScoreBySubscribeID?SubscribeID=@ViewBag.SubscribeID" class="btn btn-danger btn-lg" style="width:100%;"><span class="glyphicon glyphicon-gift"></span>&nbsp;我的积分</a>
+
+    </div>
+    <div class="col-xs-6">
+        <a href="~/WeiXin/Order/MyList?SubscribeID=@ViewBag.SubscribeID" class="btn btn-danger btn-lg" style="width:100%;"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;我的订单</a>
+
+
+    </div>
+</div>*@
+
+@*<br />*@
+<br />
+<div class="row">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-xs-12">
+            <div class="thumbnail">
+                <img src="@Html.QiNiuImage(item.Image, 500, 500)" alt="..." width="100%">
+                <div class="caption">
+                    <h4>@item.GoodName</h4>
+
+
+                    <div class="row">
+                        <div class="col-xs-6 text-left">
+                            <h5>
+
+                                兑换积分：@item.CostScore
+                            </h5>
+                        </div>
+                        <div class="col-xs-6  text-right">
+
+                            <h5>
+                                库存：@item.Count
+
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6 text-left">
+                            <h4>
+                                市场价：@item.Price
+                            </h4>
+                        </div>
+                        <div class="col-xs-6 ">
+                            @if ((int)ViewBag.MyScore >= item.CostScore)
+                            {
+                                @Html.ActionLink("兑换", "Add", "Order", new { Area = "WeiXin", GoodID = item.GoodID, SubscribeID = ViewBag.SubscribeID }, new { @class = "btn btn-danger btn-lg  pull-right" })
+
+                                @*<label>1:@item.GoodID</label>
+                                    <label>2:@ViewBag.SubscribeID</label>*@
+
+                            }
+                            else
+                            {
+
+                                <button disabled class="btn btn-danger btn-lg pull-right">兑换</button>
+                            }
+
+                        </div>
+
+                    </div>
+                    @*<p>@Html.Raw(item.Description)</p>*@
+
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+

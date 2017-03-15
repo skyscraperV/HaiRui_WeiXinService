@@ -1,0 +1,230 @@
+﻿@model WS.ViewModel.Goods_ViewModel
+
+@{
+    ViewBag.Title = "修改商品";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<br />
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li><a href="~/Admin/Goods/MyList"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;商品管理</a></li>
+    <li class="active"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;修改商品</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Edit</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Edit", "Goods", new { Area = "Admin" }, FormMethod.Post, new { @class = "form-horizontal", role = "form", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, null, new { @class = "alert alert-danger alert-dismissable" })
+
+            @Html.HiddenFor(model => model.GoodID)
+            @Html.HiddenFor(model => model.CreateTime)
+            @Html.HiddenFor(model => model.Image)
+            @Html.HiddenFor(model => model.UserID)
+            @Html.HiddenFor(model => model.AccountID)
+            @Html.HiddenFor(model => model.IsSelling)
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.GoodName, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.GoodName, new { @class = "form-control", placeholder = "GoodName" })
+                    @Html.ValidationMessageFor(model => model.GoodName)
+
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Image, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @if (Model.Image != null)
+                    {
+                        <img src="@Html.QiNiuImage(Model.Image, 100, 100)" />
+                        <br />
+                        <br />
+
+                    }
+                    <input type="file" name="imgFile" />
+
+                    @Html.ValidationMessageFor(model => model.Image)
+
+                </div>
+            </div>
+
+
+
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CategoryID, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.DropDownListFor(model => model.CategoryID, ViewBag.GoodsCategorysList as SelectList, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.CategoryID)
+
+                </div>
+            </div>
+            <div id="GoodLinkDiv" class="form-group" style="display: none;">
+                @Html.LabelFor(model => model.GoodLink, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.GoodLink, new { @class = "form-control", placeholder = "此处填写虚拟产品外部链接，用户兑换会离开本站跳转页面。" })
+                    @Html.ValidationMessageFor(model => model.GoodLink)
+
+                </div>
+            </div>
+            <div id="SendWayDiv" class="form-group">
+                @Html.LabelFor(model => model.SendWayID, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+
+                    @Html.DropDownListFor(model => model.SendWayID, ViewBag.SendWaysList as SelectList, new { @class = "form-control" })
+
+                    @Html.ValidationMessageFor(model => model.SendWayID)
+
+                </div>
+            </div>
+
+            <div id="GetAddressDiv" class="form-group" style="display: none;">
+                @Html.LabelFor(model => model.GetAddress, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.GetAddress, new { @class = "form-control", placeholder = "例：某省某市某区某路某门店" })
+                    @Html.ValidationMessageFor(model => model.GetAddress)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.Price, new { @class = "form-control", placeholder = "Price" })
+                    @Html.ValidationMessageFor(model => model.Price)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CostScore, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.CostScore, new { @class = "form-control", placeholder = "CostScore" })
+                    @Html.ValidationMessageFor(model => model.CostScore)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Count, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.Count, new { @class = "form-control", placeholder = "Count" })
+                    @Html.ValidationMessageFor(model => model.Count)
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", placeholder = "Description" })
+                    @Html.ValidationMessageFor(model => model.Description)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button type="submit" class="btn btn-default">提交</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+            $("#SendWayID").change(function (e) {
+                // console.log($("#SendWayID").text());
+                console.log($("#SendWayID option:selected").text());
+
+                var current = $("#SendWayID option:selected").text();
+
+
+                if (current === "到店自提") {
+                    $("#GetAddressDiv").show();
+
+                } else {
+
+                    $("#GetAddressDiv").hide();
+                }
+            });
+
+            $("#CategoryID").change(function (e) {
+                // console.log($("#SendWayID").text());
+
+
+
+
+
+                console.log($("#CategoryID option:selected").text());
+
+                var current = $("#CategoryID option:selected").text();
+
+
+                if (current === "实物商品") {
+
+                    $("#GoodLinkDiv").hide();
+                    $("#SendWayDiv").show();
+                } else {
+
+
+                    $("#SendWayDiv").hide();
+
+                    $("#GoodLinkDiv").show();
+
+                }
+            });
+
+
+
+
+            //else if (current === "线下活动") {
+            //    $("#GoodLinkDiv").show();
+            //    $("#GetAddressDiv").hide();
+            //}
+            var current = $("#SendWayID option:selected").text();
+
+
+            if (current === "到店自提") {
+                $("#GetAddressDiv").show();
+                $("#GoodLinkDiv").hide();
+            } else if (current === "到店自提") {
+                $("#GoodLinkDiv").show();
+                $("#GetAddressDiv").hide();
+            } else {
+                $("#GoodLinkDiv").hide();
+                $("#GetAddressDiv").hide();
+            }
+
+
+
+            var currentcate = $("#CategoryID option:selected").text();
+
+
+            if (currentcate === "实物商品") {
+
+                $("#GoodLinkDiv").hide();
+            } else {
+                $("#GoodLinkDiv").show();
+
+            }
+        });
+    </script>
+}

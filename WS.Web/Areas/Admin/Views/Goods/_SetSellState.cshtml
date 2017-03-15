@@ -1,0 +1,24 @@
+﻿@model WS.Model.Goods
+
+@if ((bool)Model.IsSelling)
+{
+
+    @Ajax.ActionLink("下架", "_SetSellState", new { GoodID = Model.GoodID, IsSelling = false }, new AjaxOptions
+                                        {
+                                            UpdateTargetId = "statediv-" + Model.GoodID,
+                                            InsertionMode = InsertionMode.Replace
+                                        }, new { @class = "btn btn-success" })
+}
+else
+{
+
+    @Ajax.ActionLink("上架", "_SetSellState", new { GoodID = Model.GoodID, IsSelling = true }, new AjaxOptions
+                                        {
+                                            UpdateTargetId = "statediv-" + Model.GoodID,
+                                            InsertionMode = InsertionMode.Replace
+                                        }, new { @class = "btn btn-danger" })
+
+
+
+
+}

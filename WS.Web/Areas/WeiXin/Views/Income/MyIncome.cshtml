@@ -1,0 +1,63 @@
+﻿@model WS.ViewModel.Income_ViewModel
+@{
+    ViewBag.Title = "MyIncome";
+    Layout = "~/Areas/WeiXin/Views/Shared/_Layout_Income.cshtml";
+}
+<style type="text/css">
+    table th, table td {
+        text-align: center !important;
+        vertical-align: middle !important;
+    }
+</style>
+<br />
+<table class="table  table-bordered bg-success">
+    <tr>
+        <th>直接返利</th>
+        <th>间接返利</th>
+        <th>可提现</th>
+    </tr>
+    <tr>
+        <td>
+            @Model.IncomeFirst
+        </td>
+        <td>
+            @Model.IncomeSecond
+        </td>
+        <td>
+            @Model.IncomeCash
+        </td>
+    </tr>
+
+</table>
+
+
+
+@*<br />*@
+<table class="table table-bordered table-condensed">
+    @{ int i = 1; }
+
+
+
+    @foreach (var item in Model.Fans)
+    {
+        <tr>
+            <td class="info">
+                <span class="label label-warning">@i.ToString()</span>
+
+            </td>
+
+            <td>
+                <img src="@item.avatar" width="50" height="50" class="img-circle" />
+
+            </td>
+            <td>
+                @item.nick
+            </td>
+            <td>
+                @item.traded_money
+            </td>
+        </tr>
+        i++;
+    }
+</table>
+

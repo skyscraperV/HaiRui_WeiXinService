@@ -1,0 +1,99 @@
+﻿@model WS.ViewModel.LayoutHeader_ViewModel
+
+<div class="jumbotron" style="background-color: #ed5353; color: white; padding: 15px; margin-bottom: 0;">
+    <table style="width: 100%; height: 150px;">
+        <tr>
+            <td style="border-right: 1px solid #eee; width: 50%;">
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+
+                            <img class="img-circle" width="60" src="@Model.HeadImgUrl" />
+                        </td>
+                        <td>
+                            <h3>
+                                @Model.NickName
+                            </h3>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            关注时间：@Html.DateFormat(Model.SubscribeTime,"yyyy-MM-dd")
+                        </td>
+
+                    </tr>
+                </table>
+            </td>
+            <td>
+                <table style="width: 100%;">
+                    <tr>
+                        <td>
+                            粉丝数
+                        </td>
+                        <td style="font-size: 2em;">
+                            @Model.ChildSubscribeCount
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            总积分
+                        </td>
+                        <td style="font-size: 2em;">
+                            @Model.Score
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+        <div class="btn-group" role="group">
+
+            @Html.ActionLink("我的积分", "IndexById", "Subscribes", new { Area = "WeiXin", SubscribeID = Model.SubscribeID }, new { @class = "btn btn-success" })
+        </div>
+        <div class="btn-group" role="group">
+
+            @Html.ActionLink("积分商城", "List", "Goods", new {Area = "WeiXin", SubscribeID = Model.SubscribeID}, new {@class = "btn btn-success"})
+
+
+        </div>
+        <div class="btn-group" role="group">
+
+            @Html.ActionLink("积分排行", "ScoreRanking", "Subscribes", new {Area = "WeiXin", SubscribeID = Model.SubscribeID}, new {@class = "btn btn-success"})
+
+
+        </div>
+
+        @if (Model.Score >= 1000)
+        {
+            <div class="btn-group" role="group">
+                @Html.ActionLink("兑换红包", "SelectScore", "CashCoupon", new { Area = "WeiXin", SubscribeID = Model.SubscribeID }, new { @class = "btn btn-success" })
+            </div>
+        }
+
+
+
+        @*<div class="btn-group" role="group">
+
+            @Html.ActionLink("积分排行", "IndexById", "Subscribes", new {Area = "WeiXin", SubscribeID = Model.SubscribeID}, new {@class = "btn btn-success"})
+
+
+        </div>*@
+
+
+
+
+        @if (Model.IsYouZan == true)
+     {
+        <div class="btn-group" role="group">
+
+            @Html.ActionLink("返现奖励", "MyIncome", "Income", new { Area = "WeiXin", SubscribeID = Model.SubscribeID }, new { @class = "btn btn-success" })
+
+
+        </div>
+     }
+        
+    </div>
+</div>

@@ -1,0 +1,181 @@
+﻿@model WS.Model.QRCode_Templates
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<br />
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li><a href="~/Admin/OfficialAccounts/MyList"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;微信公众号管理</a></li>
+    <li class="active"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加微信公众号</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Add</div>
+    <div class="panel-body">
+        @using (Html.BeginForm("Add", "QRCodeTemplate", new { Area = "Admin" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, null, new { @class = "alert alert-danger alert-dismissable" })
+
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TemplateName, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.TemplateName, new { @class = "form-control", placeholder = "TemplateName" })
+                    @Html.ValidationMessageFor(model => model.TemplateName)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ExampleUrl, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.ExampleUrl, new { @class = "form-control", placeholder = "ExampleUrl" })
+                    @Html.ValidationMessageFor(model => model.ExampleUrl)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TemplatePSDUrl, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.TemplatePSDUrl, new { @class = "form-control", placeholder = "TemplatePSDUrl" })
+                    @Html.ValidationMessageFor(model => model.TemplatePSDUrl)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NickName_FontFamily, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.NickName_FontFamily, new { @class = "form-control", placeholder = "NickName_FontFamily" })
+                    @Html.ValidationMessageFor(model => model.NickName_FontFamily)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NickName_FontSize, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.NickName_FontSize, new { @class = "form-control", placeholder = "NickName_FontSize" })
+                    @Html.ValidationMessageFor(model => model.NickName_FontSize)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NickName_FontColor, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.NickName_FontColor, new { @class = "form-control", placeholder = "NickName_FontColor" })
+                    @Html.ValidationMessageFor(model => model.NickName_FontColor)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NickName_FontX, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.NickName_FontX, new { @class = "form-control", placeholder = "NickName_FontX" })
+                    @Html.ValidationMessageFor(model => model.NickName_FontX)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NickName_FontY, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.NickName_FontY, new { @class = "form-control", placeholder = "NickName_FontY" })
+                    @Html.ValidationMessageFor(model => model.NickName_FontY)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HeadImg_X, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.HeadImg_X, new { @class = "form-control", placeholder = "HeadImg_X" })
+                    @Html.ValidationMessageFor(model => model.HeadImg_X)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HeadImg_Y, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.HeadImg_Y, new { @class = "form-control", placeholder = "HeadImg_Y" })
+                    @Html.ValidationMessageFor(model => model.HeadImg_Y)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HeadImg_Width, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.HeadImg_Width, new { @class = "form-control", placeholder = "HeadImg_Width" })
+                    @Html.ValidationMessageFor(model => model.HeadImg_Width)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.HeadImg_Height, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.HeadImg_Height, new { @class = "form-control", placeholder = "HeadImg_Height" })
+                    @Html.ValidationMessageFor(model => model.HeadImg_Height)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.QRCode_X, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.QRCode_X, new { @class = "form-control", placeholder = "QRCode_X" })
+                    @Html.ValidationMessageFor(model => model.QRCode_X)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.QRCode_Y, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.QRCode_Y, new { @class = "form-control", placeholder = "QRCode_Y" })
+                    @Html.ValidationMessageFor(model => model.QRCode_Y)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.QRCode_Width, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.QRCode_Width, new { @class = "form-control", placeholder = "QRCode_Width" })
+                    @Html.ValidationMessageFor(model => model.QRCode_Width)
+
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.QRCode_Height, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.QRCode_Height, new { @class = "form-control", placeholder = "QRCode_Height" })
+                    @Html.ValidationMessageFor(model => model.QRCode_Height)
+
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button type="submit" class="btn btn-default">提交</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

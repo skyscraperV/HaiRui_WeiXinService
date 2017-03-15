@@ -1,0 +1,473 @@
+﻿@model Senparc.Weixin.MP.Entities.GetMenuResult
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style type="text/css">
+    .parentmenu {
+        width: 100%;
+        padding: 5px;
+    }
+
+    .parentmenu_input {
+        width: 300px;
+        float: left;
+        margin-right: 20px;
+    }
+
+    .childmenu {
+        width: 100%;
+    }
+
+    .childmenu_item {
+        width: 100%;
+        padding: 5px;
+        padding-left: 85px;
+        background-image: url('../../../../Content/images/tree.png');
+        background-repeat: no-repeat;
+        background-position: left center;
+    }
+
+    .childmenu_input {
+        width: 220px;
+        float: left;
+        margin-right: 20px;
+    }
+</style>
+
+
+<br />
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li><a href="~/Admin/OfficialAccounts/MyList"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;微信公众号管理</a></li>
+    <li class="active"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加微信公众号</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Index</div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <tbody id="parentmenu_sortable">
+                @if (Model != null)
+                {
+                    foreach (var item in Model.menu.button)
+                    {
+
+                        string parentid = Guid.NewGuid().ToString();
+                        if (item.GetType().Name != "SubButton")
+                        {
+
+
+
+                            if (item.GetType().Name == "SingleClickButton")
+                            {
+                                Senparc.Weixin.MP.Entities.Menu.SingleClickButton itemnew = item as Senparc.Weixin.MP.Entities.Menu.SingleClickButton;
+
+                                <tr class="menutr" id="menutr_@parentid">
+                                    <td>
+                                        <div class="parentmenu" id="parentmenu_@parentid" data-number="@parentid">
+                                            <input value="@itemnew.name" data-type="@itemnew.type" data-key="@itemnew.key" id="parentmenu_input_@parentid" type="text" class="parentmenu_input form-control" />
+                                            <span class="glyphicon glyphicon-move"></span> |
+                                            <a class="btn btn-link btn-set-click" data-menutarget="parentmenu_input_@parentid">设置菜单动作</a> |
+                                            <a class="btn btn-link btn-delete-click" data-menutarget="pmenutr_@parentid">删除菜单</a>|
+                                            <a class="btn btn-link" onclick="AddSubMenu(this)" data-childmenuid="childmenu_@parentid">添加子菜单</a>
+                                        </div>
+                                        <div class="childmenu" id="childmenu_@parentid">
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                Senparc.Weixin.MP.Entities.Menu.SingleViewButton itemnew = item as Senparc.Weixin.MP.Entities.Menu.SingleViewButton;
+
+                                <tr class="menutr" id="menutr_@parentid">
+                                    <td>
+                                        <div class="parentmenu" id="parentmenu_@parentid" data-number="@parentid">
+                                            <input value="@itemnew.name" data-type="@itemnew.type" data-key="@itemnew.url" id="parentmenu_input_@parentid" type="text" class="parentmenu_input form-control" />
+                                            <span class="glyphicon glyphicon-move"></span> |
+                                            <a class="btn btn-link btn-set-click" data-menutarget="parentmenu_input_@parentid">设置菜单动作</a> |
+                                            <a class="btn btn-link btn-delete-click" data-menutarget="menutr_@parentid">删除菜单</a>|
+                                            <a class="btn btn-link" onclick="AddSubMenu(this)" data-childmenuid="childmenu_@parentid">添加子菜单</a>
+                                        </div>
+                                        <div class="childmenu" id="childmenu_@parentid">
+                                        </div>
+
+                                    </td>
+                                </tr>
+                            }
+
+                        }
+                        else
+                        {
+                            <tr class="menutr" id="menutr_@parentid">
+                                <td>
+                                    <div class="parentmenu" id="parentmenu_@parentid" data-number="@parentid">
+                                        <input value="@item.name" id="parentmenu_input_@parentid" type="text" class="parentmenu_input form-control" />
+                                        <span class="glyphicon glyphicon-move"></span>  |
+                                        <a class="btn btn-link" onclick="AddSubMenu(this)" data-childmenuid="childmenu_@parentid">添加子菜单</a>  |
+                                        <a class="btn btn-link btn-delete-click" data-menutarget="menutr_@parentid">删除菜单</a>
+                                    </div>
+                                    <div class="childmenu" id="childmenu_@parentid" data-number="@parentid">
+
+                                        @foreach (var childitem in ((Senparc.Weixin.MP.Entities.Menu.SubButton)item).sub_button)
+                                        {
+
+                                            string childid = Guid.NewGuid().ToString();
+
+                                            if (childitem.type == "click")
+                                            {
+
+                                                Senparc.Weixin.MP.Entities.Menu.SingleClickButton itemnew = childitem as Senparc.Weixin.MP.Entities.Menu.SingleClickButton;
+
+
+                                                <div class="childmenu_item" id="childmenu_@childid">
+                                                    <input id="childmenu_input_@childid" value="@childitem.name" data-type="@itemnew.type" data-key="@itemnew.key" type="text" class="childmenu_input form-control" />
+                                                    <span class="glyphicon glyphicon-move"></span> |
+                                                    <a class="btn btn-link  btn-set-click" data-menutarget="childmenu_input_@childid">设置菜单动作</a> |
+                                                    <a class="btn btn-link btn-delete-click" data-menutarget="childmenu_@childid">删除菜单</a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                Senparc.Weixin.MP.Entities.Menu.SingleViewButton itemnew = childitem as Senparc.Weixin.MP.Entities.Menu.SingleViewButton;
+                                                <div class="childmenu_item" id="childmenu_@childid">
+                                                    <input id="childmenu_input_@childid" value="@childitem.name" data-type="@itemnew.type" data-key="@itemnew.url" type="text" class="childmenu_input form-control" />
+                                                    <span class="glyphicon glyphicon-move"></span> |
+                                                    <a class="btn btn-link btn-set-click" data-menutarget="childmenu_input_@childid">设置菜单动作</a> |
+                                                    <a class="btn btn-link btn-delete-click" data-menutarget="childmenu_@childid">删除菜单</a>
+                                                </div>
+                                            }
+
+
+
+                                        }
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                }
+                
+                
+
+            </tbody>
+        </table>
+        <a class="btn  btn-link" id="AddParentMenuBtn">添加主菜单</a>     <button class="btn btn-default" onclick="save();">保存</button>
+
+    </div>
+</div>
+
+
+<!-- Button trigger modal -->
+@*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+        Launch demo modal
+    </button>*@
+
+<!-- Modal -->
+<div class="modal fade" id="menuClickModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">选择菜单</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="currenteditmenu" />
+                <input type="radio" name="buttontype" id="clickradio" value="click" /> <label for="clickradio">点击事件</label>
+                <input type="radio" name="buttontype" id="viewradio" value="view"/> <label for="viewradio">链接</label> 
+
+                <button class="btn btn-default btn-sm" id="haibaobtn">获取海报</button>
+                <button class="btn btn-default btn-sm" id="scorebtn">我的收益</button>
+                <button class="btn btn-default btn-sm" id="signbtn">每日签到</button>
+                <button class="btn btn-default btn-sm" id="orderbtn">我的订单</button>
+
+               
+                <input type="text" id="keyorurl" class="form-control" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" id="saveclick">保存</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @*@Styles.Render("~/Content/styles/jqueryui/base/css")*@
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui");
+
+    <script type="text/javascript">
+
+        var currentaccountid = "@ViewBag.AccountID";
+        var currentappid = "@ViewBag.AppID";
+        function AddSubMenu(target) {
+
+            var childmenuid = $(target).data("childmenuid");
+
+            if ($("#" + childmenuid).children().length < 5) {
+
+                $.ajax({
+                    type: "Get",
+                    url: "../Admin/Menu/_AddChildMenu",
+                    //data: "accountid="+,
+                    dataType: "html",
+                    success: function (response) {
+                        $($("#" + childmenuid)).append(response);
+                        UnBindEvent();
+                        BindEvent();
+                    }
+                });
+
+
+            } else {
+                alert("最多可以添加5个子菜单");
+            }
+
+
+        }
+
+        $(function () {
+            //拖动
+            $("#parentmenu_sortable").sortable();
+            $("#parentmenu_sortable").disableSelection();
+            $(".childmenu").sortable();
+            $(".childmenu").disableSelection();
+
+
+            $("#haibaobtn").click(function (e) {
+
+                document.getElementById("clickradio").checked = true;
+                document.getElementById("viewradio").checked = false;
+
+                $("#keyorurl").val("海报");
+            });
+            $("#signbtn").click(function (e) {
+
+                document.getElementById("clickradio").checked = true;
+                document.getElementById("viewradio").checked = false;
+
+                $("#keyorurl").val("签到");
+            });
+            $("#orderbtn").click(function (e) {
+
+                document.getElementById("viewradio").checked = true;
+                document.getElementById("clickradio").checked = false;
+
+                var url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + currentappid + "&redirect_uri=http://i.WSyun.com/weixin/order/list&response_type=code&scope=snsapi_userinfo&state=" + currentaccountid + "#wechat_redirect";
+
+                $("#keyorurl").val(url);
+            });
+            
+            $("#scorebtn").click(function (e) {
+
+                document.getElementById("viewradio").checked = true;
+                document.getElementById("clickradio").checked = false;
+
+                var url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + currentappid + "&redirect_uri=http://i.WSyun.com/weixin/subscribes/index&response_type=code&scope=snsapi_userinfo&state=" + currentaccountid + "#wechat_redirect";
+
+                $("#keyorurl").val(url);
+            });
+
+            $("#saveclick").click(function (e) {
+
+                var currenteditmenu = $("#currenteditmenu").val(); //获取当前编辑的菜单对象
+
+                var buttontype = $('input[name="buttontype"]:checked').val(); //选择的菜单类型
+                var keyorurl = $("#keyorurl").val(); //菜单的key或者url
+
+                console.log(buttontype);
+                console.log(keyorurl);
+
+
+                console.log($("#" + currenteditmenu).data("type"));
+                console.log($("#" + currenteditmenu).data("key"));
+
+
+                $("#" + currenteditmenu).data("type", buttontype);
+                $("#" + currenteditmenu).data("key", keyorurl);
+                //$("#" + currenteditmenu).val(buttontype);
+
+                console.log($("#" + currenteditmenu).data("type"));
+                console.log($("#" + currenteditmenu).data("key"));
+
+
+                $("#menuClickModal").modal("hide");
+
+            });
+
+
+            $("#AddParentMenuBtn").click(function (e) {
+
+                var pmenucount = $("#parentmenu_sortable").find(".menutr").length;
+                if (pmenucount < 3) {
+                    $.ajax({
+                        type: "Get",
+                        url: "../Admin/Menu/_AddParentMenu",
+                        //data: "name=John&location=Boston",
+                        dataType: "html",
+                        success: function (response) {
+                            $("#parentmenu_sortable").append(response);
+                            UnBindEvent();
+                            BindEvent();
+                        }
+                    });
+                } else {
+                    alert("最多添加3个主菜单！");
+                }
+
+
+            });
+
+
+            BindEvent();
+
+        });
+
+        function BindEvent() {
+            //点击设置菜单动作，弹出窗口，并设置当前编辑菜单对象
+            $(".btn-set-click").click(function (e) {
+
+                //console.log($(e.target).parent())
+
+
+                var inputtarget = $(e.target).data("menutarget");
+
+                var type = $("#" + inputtarget).data("type");
+                console.log(type);
+                var keyorurl = $("#" + inputtarget).data("key");
+
+                $("#keyorurl").val(keyorurl);
+                if (type === "click") {
+                    document.getElementById("clickradio").checked = true;
+                    document.getElementById("viewradio").checked = false;
+                } else if (type === "view") {
+                    document.getElementById("viewradio").checked = true;
+                    document.getElementById("clickradio").checked = false;
+                } else {
+                    document.getElementById("clickradio").checked = true;
+                    document.getElementById("viewradio").checked = false;
+
+                }
+
+
+                $("#menuClickModal").modal("show");
+                $("#currenteditmenu").val($(e.target).data("menutarget"));
+            });
+
+
+            $(".btn-delete-click").click(function (e) {
+                var menutarget = $(e.target).data("menutarget");
+
+
+                $("#" + menutarget).remove();
+
+            });
+
+        }
+
+        function UnBindEvent() {
+            $(".btn-set-click").unbind();
+            $(".btn-delete-click").unbind();
+        }
+
+        function save() {
+
+            var menujson = new Object();
+            //menujson.menu=
+            var buttons = new Array();
+
+            //编辑父级菜单
+            $.each($(".menutr"), function (parentindex, parentitem) {
+
+
+                // console.log($(parentitem).data("number"));
+                //var number = $(parentitem).children(".parentmenu").data("number");
+
+                //父级菜单子集个数
+                var childlength = $(parentitem).find(".childmenu_item").length;
+
+
+                console.log(childlength)
+                console.log($(parentitem).find(".parentmenu"));
+
+                //如果没有子菜单
+                if (childlength === 0) {
+                    var button = new Object();
+                    //button.
+                    var type = $(parentitem).find(".parentmenu input").data("type");
+                    var keyorurl = $(parentitem).find(".parentmenu input").data("key");
+                    button.type = type;
+                    button.name = $(parentitem).find(".parentmenu input").val();
+                    if (type === "view") {
+                        button.url = keyorurl;
+                    } else if (type === "click") {
+                        button.key = keyorurl;
+                    }
+
+                    buttons.push(button);
+                } else {
+
+                    var button = new Object();
+                    button.name = $(parentitem).find(".parentmenu input").val();
+
+
+                    var childbuttons = new Array();
+                    $.each($(parentitem).find(".childmenu_item"), function (childindex, childitem) {
+                        var childbutton = new Object();
+
+
+                        var childtype = $(childitem).find("input").data("type");
+                        var childkeyorurl = $(childitem).find("input").data("key");
+                        childbutton.type = childtype;
+                        childbutton.name = $(childitem).find("input").val();
+                        if (childtype === "view") {
+                            childbutton.url = childkeyorurl;
+                        } else if (childtype === "click") {
+                            childbutton.key = childkeyorurl;
+                        }
+
+                        childbuttons.push(childbutton);
+                    });
+
+                    button.sub_button = childbuttons;
+                    buttons.push(button);
+                }
+            });
+
+            var total = buttons;
+            var menu = new Object();
+            menu.button = buttons;
+
+            var total = new Object();
+            total.menu = menu;
+
+            console.log(buttons);
+
+            var totalstr = JSON.stringify(total)
+
+            // console.log(totalstr);
+
+            var data = {
+                accountid: "@ViewBag.AccountID",
+                menustr: totalstr
+            }
+
+
+            $.ajax({
+                type: "POST",
+                url: "../../Admin/Menu/SaveMenu",
+                data: data,
+                dataType: "json",
+                success: function (response) {
+                    alert(response);
+                }
+            });
+        }
+    </script>
+}

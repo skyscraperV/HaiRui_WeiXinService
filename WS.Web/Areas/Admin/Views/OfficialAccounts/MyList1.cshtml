@@ -1,0 +1,108 @@
+﻿@model IEnumerable<WS.ViewModel.OfficialAccounts_ViewModel>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MyList1</title>
+    @Styles.Render("~/Content/bootstrap")
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <ol class="breadcrumb">
+        <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;会员中心</a></li>
+        <li class="active"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;资讯管理</li>
+    </ol>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">MyList1</div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AccountID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WeiXinName)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.OriginalID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.WeiXinNumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AppID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.AppSecret)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.CreateTime)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserID)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.UserName)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AccountID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WeiXinName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.OriginalID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.WeiXinNumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AppID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AppSecret)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreateTime)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserID)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.UserName)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("编辑", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("明细", "Details", new { /* id=item.PrimaryKey */ }) |
+                                    @Html.ActionLink("删除", "Delete", new { /* id=item.PrimaryKey */ })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>

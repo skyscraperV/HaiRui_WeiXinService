@@ -1,0 +1,97 @@
+﻿@model WS.ViewModel.Orders_ViewModel
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add</title>
+    @Styles.Render("~/Content/bootstrap")
+    @*@Styles.Render("~/Content/css")*@
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <div class="container-fluid">
+        <br />
+
+        <div class="panel panel-success">
+            <div class="panel-heading">确认订单</div>
+            <div class="panel-body">
+                <h3>@ViewBag.GoodName</h3>
+                <h3 style="color: red;">- @ViewBag.CostScore 积分</h3>
+                <hr />
+                @using (Html.BeginForm("Add", "Order", new { Area = "WeiXin" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, null, new { @class = "alert alert-danger alert-dismissable" })
+
+                    @Html.HiddenFor(model => model.OrderID)
+                    @Html.HiddenFor(model => model.GoodID)
+                    @Html.HiddenFor(model => model.SubscribeID)
+                    @Html.HiddenFor(model => model.AccountID)
+
+                    if (Model.CategoryName == "实物商品")
+                    {
+                        if (Model.SendWayName == "快递到付" || Model.SendWayName == "商家包邮")
+                        {
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Address, new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.Address, new { @class = "form-control", placeholder = "Address" })
+                                    @Html.ValidationMessageFor(model => model.Address)
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ZipCode, new { @class = "col-sm-2 control-label" })
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control", placeholder = "ZipCode" })
+                                    @Html.ValidationMessageFor(model => model.ZipCode)
+
+                                </div>
+                            </div>
+                        }
+                    }
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control", placeholder = "PhoneNumber" })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ContactPerson, new { @class = "col-sm-2 control-label" })
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.ContactPerson, new { @class = "form-control", placeholder = "ContactPerson" })
+                            @Html.ValidationMessageFor(model => model.ContactPerson)
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-8">
+                            <button type="submit" class="btn btn-default">提交</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

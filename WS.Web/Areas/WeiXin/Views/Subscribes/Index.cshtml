@@ -1,0 +1,83 @@
+﻿@model WS.Model.Subscribes
+
+@{
+    ViewBag.Title = "我的积分";
+    Layout = "~/Areas/WeiXin/Views/Shared/_Layout.cshtml";
+}
+<br />
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>编号</th>
+        <th>积分来源</th>
+        <th>数量</th>
+        <th>增加时间</th>
+    </tr>
+    <tr>
+        <td>1</td>
+        <td>直接推荐积分</td>
+
+        @if (Model.DirectScore != null)
+        {
+            <td>
+                @Model.DirectScore
+            </td>
+            <td>
+                @Model.DirectScoreUpdateTime
+            </td>
+        }
+        else
+        {
+            <td>
+                0
+            </td>
+            <td>
+                ——
+            </td>
+        }
+
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>间接推荐积分</td>
+        @if (Model.IndirectScore != null)
+        {
+            <td>
+                @Model.IndirectScore
+            </td>
+            <td>
+                @Model.IndirectScoreUpdateTime
+            </td>
+        }
+        else
+        {
+            <td>
+                0
+            </td>
+            <td>
+                ——
+            </td>
+        }
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>签到积分</td>
+        @if (Model.SignScore != null)
+        {
+            <td>
+                @Model.SignScore
+            </td>
+            <td>
+                @Model.SignLastTime
+            </td>
+        }
+        else
+        {
+            <td>
+                0
+            </td>
+            <td>
+                ——
+            </td>
+        }
+    </tr>
+</table>

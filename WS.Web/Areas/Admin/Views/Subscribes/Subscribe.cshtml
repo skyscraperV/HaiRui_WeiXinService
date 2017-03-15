@@ -1,0 +1,98 @@
+﻿@using WS.Model
+@model IEnumerable<WS.ViewModel.Subscribes_ViewModel>
+
+@{
+    ViewBag.Title = "Subscribes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li><a href="~/Admin/Subscribes/List?AccountID=@((ViewBag.Parent as Subscribes).AccountID)"> <span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;粉丝管理</a></li>
+    <li class="active"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;@((ViewBag.Parent as Subscribes).NickName)</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">Subscribes</div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-3">
+                <img src="@((ViewBag.Parent as Subscribes).HeadImgUrl)" width="200" height="200" />
+            </div>
+                
+                <div class="col-md-9">
+                    <h1>@((ViewBag.Parent as Subscribes).NickName)</h1>
+                    <p>@((ViewBag.Parent as Subscribes).Country)@((ViewBag.Parent as Subscribes).Province)@((ViewBag.Parent as Subscribes).City)</p>
+                </div>
+            </div>
+
+
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th></th>
+
+                        <th>
+                            用户名
+                        </th>
+                        <th>
+                            地点
+                        </th>
+                        <th>
+                            性别
+                        </th>
+                        <th>
+                            积分
+                        </th>
+                        <th>
+                            关注时间
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.HeadImgUrl" width="50" height="50" />
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NickName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Country)
+                                @Html.DisplayFor(modelItem => item.Province)
+                                @Html.DisplayFor(modelItem => item.City)
+                            </td>
+
+
+                            <td>
+
+
+                                @Html.SexNumberToString(item.Sex)
+
+                            </td>
+                            <td>
+                                <span class="label label-warning">@Html.DisplayFor(modelItem => item.Score)</span>
+
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SubscribeTime)
+                            </td>
+
+
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

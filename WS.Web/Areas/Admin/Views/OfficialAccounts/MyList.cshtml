@@ -1,0 +1,128 @@
+﻿@model IEnumerable<WS.ViewModel.OfficialAccounts_ViewModel>
+
+@{
+    ViewBag.Title = "微信公众号管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li class="active"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;微信公众号管理</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        微信公众号管理
+        @Html.ActionLink("添加微信公众号", "Add", "OfficialAccounts", new { Area = "Admin" }, new { @class = "pull-right" })
+    </div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.WeiXinName)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.WeiXinNumber)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.CreateTime)
+                        </th>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.UserName)
+                        </th>
+
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WeiXinName)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.WeiXinNumber)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CreateTime)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td id="statediv-@item.AccountID">
+                                @if ((bool)item.IsConfigure)
+                                {
+                                    <span class="glyphicon glyphicon-ok-circle" style="font-size: 2em; color: green;"></span>
+                                }
+                                else
+                                {
+
+                                    if (ViewBag.IsAdmin == true)
+                                    {
+                                        @Ajax.ActionLink("确认配置", "_Configure", new { AccountID = item.AccountID }, new AjaxOptions
+                                        {
+                                            UpdateTargetId = "statediv-" + item.AccountID,
+                                            InsertionMode = InsertionMode.Replace
+                                        }, new { @class = "btn btn-danger" })
+                                    }
+                                    else
+                                    {
+                                        <span class="glyphicon glyphicon-ban-circle" style="font-size: 2em; color: #282826;"></span>
+
+                                    }
+
+
+                                }
+                            </td>
+
+                            <td>
+                                <div class="btn-group" role="group" aria-label="">
+
+
+
+                                    @Html.ActionLink("设置海报背景", "SelectTempLate", new { AccountID = item.AccountID }, new { @class = "btn btn-default" })
+                                    @Html.ActionLink("编辑", "Edit", new { id = item.AccountID }, new { @class = "btn btn-default" })
+                                    @Html.ActionLink("菜单", "Index","Menu",new { accountid = item.AccountID }, new { @class = "btn btn-default" })
+                                    @if (!(bool)item.IsConfigure)
+                                    {
+
+
+
+                                        @Html.ActionLink("删除", "Delete", new { id = item.AccountID }, new { @class = "btn btn-default" })
+
+
+                                    }
+                                    else
+                                    {
+                                        @Html.ActionLink("粉丝", "List", "Subscribes", new { AccountID = item.AccountID }, new { @class = "btn btn-default" })
+                                        @*@Html.ActionLink("粉丝地图", "MapList", "Subscribes", new { AccountID = item.AccountID }, new { @class = "btn btn-default" })*@
+
+                                    }
+
+
+
+                                </div>
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

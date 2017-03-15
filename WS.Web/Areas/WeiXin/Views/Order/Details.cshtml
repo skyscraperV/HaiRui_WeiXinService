@@ -1,0 +1,117 @@
+﻿@model WS.ViewModel.Orders_Total_ViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>订单详情</title>
+    @Styles.Render("~/Content/bootstrap")
+    <style>
+        body {
+            background-color: #ff6a00;
+            color: white;
+        }
+
+        * {
+            font-family: 'Microsoft YaHei UI';
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <table>
+            <tr>
+                <td>
+                    <h4>@Model.Goods.GoodName</h4>
+                </td>
+                <td width="100">
+                    <h4 style="text-align: right;">@Model.State</h4>
+
+                </td>
+            </tr>
+        </table>
+
+
+        <hr />
+        <div class="row">
+            <div class="col-xs-5">
+                <h4>
+                    <span class="glyphicon glyphicon-user"></span>
+                    @Model.ContactPerson
+                </h4>
+            </div>
+            <div class="col-xs-7">
+                <h4>
+                    <span class="glyphicon glyphicon-phone"></span>
+                    @Model.PhoneNumber
+                </h4>
+            </div>
+        </div>
+        @if (Model.Goods.Goods_Categorys.CategoryName == "实物商品")
+        {
+            if (Model.Goods.Goods_SendWays.SendWayName == "快递到付" || Model.Goods.Goods_SendWays.SendWayName == "商家包邮")
+            {
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        @Model.Address
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        快递公司：@Model.ExpressCompany
+                    </div>
+                    <div class="col-xs-6">
+                        快递单号：@Model.ExpressNumber
+                    </div>
+                </div>
+            }
+            else
+            {
+                <h5>取货联系电话</h5>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        @Model.Goods.ContactPhone
+                    </div>
+
+                </div>
+                <h5>取货地址</h5>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                        @Model.Goods.GetAddress
+                    </div>
+
+                </div>
+            }
+        }
+        else
+        {
+            <hr />
+            <h4>商品链接</h4>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span class="glyphicon glyphicon-link"></span>
+                    <a href="@Model.Goods.GoodLink">@Model.Goods.GoodLink</a>
+                </div>
+
+            </div>
+        }
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+</body>
+</html>

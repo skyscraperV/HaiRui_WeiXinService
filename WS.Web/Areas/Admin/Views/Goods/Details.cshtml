@@ -1,0 +1,47 @@
+﻿@model WS.ViewModel.Goods_ViewModel
+
+@{
+    ViewBag.Title = "商品详情";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li><a href="~/Admin/Goods/MyList"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;商品管理</a></li>
+    <li class="active"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;商品详情</li>
+</ol>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">@Model.GoodName</div>
+            <div id="list-part" class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <img src="@Html.QiNiuImage(Model.Image,600)" width="100%" />
+                    </div>
+                    <div class="col-sm-6">
+                        <h2>@Html.DisplayFor(model => model.GoodName)</h2>
+                        <hr />
+                        <h3>市场价：@Model.Price ￥</h3>
+                        <h2 style="color: #ff0000">兑换积分：@Model.CostScore</h2>
+                        <h3>库存数量： @Model.Count</h3>
+                        <h4>上架时间：@Model.CreateTime</h4>
+                        <hr />
+                        <h5>详情描述</h5>
+                        <hr />
+                        @Html.Raw(Model.Description)
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+﻿<tr class="menutr" id="menutr_@ViewBag.ParentId">
+    <td>
+        <div class="parentmenu" id="parentmenu_@ViewBag.ParentId" data-number="@ViewBag.ParentId">
+            <input value="" data-type="" data-key="" id="parentmenu_input_@ViewBag.ParentId" type="text" class="parentmenu_input form-control" />
+            <span class="glyphicon glyphicon-move"></span> |
+            <a class="btn btn-link btn-set-click" data-menutarget="parentmenu_input_@ViewBag.ParentId">设置菜单动作</a> |
+            <a class="btn btn-link btn-delete-click" data-menutarget="pmenutr_@ViewBag.ParentId">删除菜单</a>|
+            <a class="btn btn-link" onclick="AddSubMenu(this)" data-childmenuid="childmenu_@ViewBag.ParentId">添加子菜单</a>
+        </div>
+        <div class="childmenu" id="childmenu_@ViewBag.ParentId">
+        </div>
+
+    </td>
+</tr>

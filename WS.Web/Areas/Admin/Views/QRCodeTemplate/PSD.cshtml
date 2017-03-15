@@ -1,0 +1,72 @@
+﻿@model WS.Model.QRCode_Templates
+
+@{
+    ViewBag.Title = "PSD";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<br />
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li><a href="~/Admin/OfficialAccounts/MyList"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;微信公众号管理</a></li>
+    <li class="active"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;设置海报背景</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">设置海报背景</div>
+    <div class="panel-body">
+
+
+        <div class="row">
+            <div class="col-sm-offset-4 col-sm-4">
+                <input type="file" id="file_upload" name="file_upload" />
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <link href="~/Scripts/uploadify/uploadify.css" rel="stylesheet" />
+    <script src="~/Scripts/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#file_upload').uploadify({
+                //'auto':true,
+                'buttonText': '请选择上传文件',
+                'multi': true,
+                'queueSizeLimit': 1, //文件数量限制
+                //'fileTypeExts': '*.gif; *.jpg; *.png',
+                'fileSizeLimit': '300KB',//The maximum size allowed for a file upload.  This value can be a number or string.  If it’s a string, it accepts a unit (B, KB, MB, or GB).  The default unit is in KB.  You can set this value to 0 for no limit.
+                'swf': '@Url.Content("~/Scripts/uploadify/uploadify.swf")',
+                'uploader': '/admin/QRCodeTemplate/UploadPSD?TemplateID=@Model.TemplateID',
+                'onUploadSuccess': function (file, data, response) {
+                    //eval("data=" + data);
+
+                    //console.log(file);
+                    //console.log(data);
+                    //console.log(response);
+                    //alert('文件 ' + file.name + ' 已经上传成功，并返回 ' + response + ' 保存文件名称为 ' + data.SaveName);
+
+
+                    var datajson = JSON.parse(data);
+                    //console.log(datajson);
+                    //console.log(datajson.SaveName);
+                    if (datajson.Success === true) {
+                       // $("#imgprev").attr("src", datajson.SaveName);
+                        alert("上传成功");
+                    } else {
+                        alert(datajson.Message);
+                    }
+                }
+
+
+            });
+        });
+    </script>
+}

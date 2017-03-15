@@ -1,0 +1,55 @@
+﻿@model IEnumerable<WS.Model.QRCode_Templates>
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li class="active"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;微信公众号管理</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">List</div>
+    <div class="panel-body">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.TemplateName)
+                        </th>
+
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TemplateName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("模板PSD", "PSD", new { id = item.TemplateID }) |
+                                @Html.ActionLink("模板示例", "Example", new { id = item.TemplateID })
+                            </td>
+                            <td>
+                                @Html.ActionLink("编辑", "Edit", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("明细", "Details", new { /* id=item.PrimaryKey */ }) |
+                                @Html.ActionLink("删除", "Delete", new { /* id=item.PrimaryKey */ })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

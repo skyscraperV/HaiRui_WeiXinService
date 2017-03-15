@@ -1,0 +1,86 @@
+﻿@model WS.ViewModel.Orders_FaHuo_ViewModel
+
+@{
+    ViewBag.Title = "FaHuo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<br />
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li><a href="~/Admin/OfficialAccounts/MyList"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;微信公众号管理</a></li>
+    <li class="active"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加微信公众号</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">FaHuo</div>
+    <div class="panel-body">
+
+        <div class="row">
+            <div class="col-md-2">
+                <img  src="@Html.QiNiuImage(Model.GoodsImage)" width="200" /></div>
+            <div class="col-md-4">
+                <h3>商品名称：@Model.GoodsName</h3>
+
+                @if (Model.CategoryName == "实物商品")
+                {
+                if (Model.SendWayName == "快递到付" || Model.SendWayName == "商家包邮")
+                {
+
+                    <h4>发货方式：@Model.SendWayName</h4>
+                }
+                }
+            </div>
+            <div class="col-md-3">
+                <h3>兑换用户：@Model.ContactPerson</h3>
+            </div>
+        </div>
+        <br />
+
+
+        @using (Html.BeginForm("FaHuo", "Orders", new {Area = "Admin"}, FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, null, new {@class = "alert alert-danger alert-dismissable"})
+
+            @Html.HiddenFor(model => model.OrderID)
+
+            if (Model.CategoryName == "实物商品")
+            {
+                if (Model.SendWayName == "快递到付" || Model.SendWayName == "商家包邮")
+                {
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ExpressCompany, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.ExpressCompany, new {@class = "form-control", placeholder = "ExpressCompany"})
+                            @Html.ValidationMessageFor(model => model.ExpressCompany)
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ExpressNumber, new {@class = "col-sm-2 control-label"})
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(model => model.ExpressNumber, new {@class = "form-control", placeholder = "ExpressNumber"})
+                            @Html.ValidationMessageFor(model => model.ExpressNumber)
+
+                        </div>
+                    </div>
+                }
+            }
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-8">
+                    <button type="submit" class="btn btn-default">确认发货</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -48,6 +48,9 @@
     <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
       <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.7\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
     </Reference>
@@ -57,6 +60,21 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin, Version=4.11.4.31712, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Senparc.Weixin.4.11.4\lib\net45\Senparc.Weixin.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin.MP, Version=14.3.132.31714, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Senparc.Weixin.MP.14.3.132\lib\net45\Senparc.Weixin.MP.dll</HintPath>
+    </Reference>
+    <Reference Include="Senparc.Weixin.MP.MvcExtension, Version=4.2.0.31716, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Senparc.Weixin.MP.MVC.4.2.0\lib\net45\Senparc.Weixin.MP.MvcExtension.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -139,6 +157,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\GoodsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OfficialAccountsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QRCodeTemplateController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SubscribesController.cs" />
+    <Compile Include="Areas\WeiXin\Controllers\CheckController.cs" />
+    <Compile Include="Areas\WeiXin\Controllers\GoodsController.cs" />
+    <Compile Include="Areas\WeiXin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\WeiXin\Controllers\ScoreController.cs" />
+    <Compile Include="Areas\WeiXin\Controllers\SubscribesController.cs" />
+    <Compile Include="Areas\WeiXin\WeiXinAreaRegistration.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -150,6 +181,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -167,6 +199,58 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Goods\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Goods\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Goods\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Goods\MyList.cshtml" />
+    <Content Include="Areas\Admin\Views\Goods\_SetSellState.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\_AddChildMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Menu\_AddParentMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Add - 复制.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Edit_Area.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Edit_BaseInfo.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Edit_PromptLanguage.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Edit_Score.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Edit_YouZan.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\MyList.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\MyList1.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\Select.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\SelectTempLate.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\SetQRCodeBgImg.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\_Configure.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\_OrderMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\OfficialAccounts\_SubscribeMenu.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\FaHuo.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\FaHuo2.cshtml" />
+    <Content Include="Areas\Admin\Views\Orders\List.cshtml" />
+    <Content Include="Areas\Admin\Views\QRCodeTemplate\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\QRCodeTemplate\Example.cshtml" />
+    <Content Include="Areas\Admin\Views\QRCodeTemplate\List.cshtml" />
+    <Content Include="Areas\Admin\Views\QRCodeTemplate\PSD.cshtml" />
+    <Content Include="Areas\Admin\Views\Subscribes\List.cshtml" />
+    <Content Include="Areas\Admin\Views\Subscribes\MapList.cshtml" />
+    <Content Include="Areas\Admin\Views\Subscribes\Subscribe.cshtml" />
+    <Content Include="Areas\Admin\Views\Subscribes\Test.cshtml" />
+    <Content Include="Areas\WeiXin\Views\web.config" />
+    <Content Include="Areas\WeiXin\Views\Goods\List.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Income\MyIncome.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Income\_LayoutHeader.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Order\Add.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Order\Details.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Order\MyList.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Score\MyScore.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Subscribes\Index.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Subscribes\ScoreRanking.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Subscribes\_LayoutHeader.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Shared\_Layout_Income.cshtml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -199,6 +283,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\WeiXin\Models\" />
+    <Folder Include="Areas\WeiXin\Views\Check\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +296,32 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-3.1.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WS.BLL\WS.BLL.csproj">
+      <Project>{cca3063d-bc28-4596-8482-c97cf779e394}</Project>
+      <Name>WS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WS.Extension\WS.Extension.csproj">
+      <Project>{78cb98f4-4477-41e4-ba59-5e07e2b3bd53}</Project>
+      <Name>WS.Extension</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WS.Handler\WS.Handler.csproj">
+      <Project>{b3a4743c-a789-4139-81c5-a8fd6c491a42}</Project>
+      <Name>WS.Handler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WS.Model\WS.Model.csproj">
+      <Project>{d04a2739-425d-4e92-b7ec-813e285ffb2b}</Project>
+      <Name>WS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WS.Utility\WS.Utility.csproj">
+      <Project>{7baf23e6-468a-42fc-a03c-324519917080}</Project>
+      <Name>WS.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WS.ViewModel\WS.ViewModel.csproj">
+      <Project>{8affb2e7-72e2-499c-96ce-89a280fd7ad9}</Project>
+      <Name>WS.ViewModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

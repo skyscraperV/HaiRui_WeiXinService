@@ -1,0 +1,50 @@
+﻿@model IEnumerable<WS.ViewModel.Subscribes_ViewModel>
+
+@{
+    ViewBag.Title = "积分排行";
+    Layout = "~/Areas/WeiXin/Views/Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    table th, table td {
+        text-align: center !important;
+        vertical-align: middle !important;
+    }
+</style>
+<br />
+@*<div class="container-fluid">*@
+    <table class="table table-bordered table-condensed">
+        <tr>
+            <th>排行</th>
+            
+            <th>头像</th>
+            <th>用户</th>
+            @*<th>粉丝</th>*@
+            <th>积分</th>
+        </tr>
+
+        @{ int i = 1; }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <div style="font-size: 18px; width: 30px; height: 30px; line-height: 30px; border-radius: 15px; text-align: center; background-color: #ED5353; color: white; display: block; margin: 0 auto;">@i.ToString()</div>
+                </td>
+                <td>
+                    <img class="img-circle" src="@item.HeadImgUrl" width="50" height="50"/><br/>
+                  
+                </td>
+                <td>
+                    <span style="font-size: 12px;">
+                        @item.NickName
+                    </span>
+                    @*@item.FansCount*@
+                </td>
+                <td>
+                    @item.Score
+                </td>
+
+            </tr>
+            i++;
+        }
+    </table>
+@*</div>*@

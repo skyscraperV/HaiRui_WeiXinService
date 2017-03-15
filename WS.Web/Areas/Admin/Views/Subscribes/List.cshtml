@@ -1,0 +1,211 @@
+﻿@model PagedList.StaticPagedList<WS.ViewModel.Subscribes_ViewModel>
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    table th, table td {
+        text-align: center;
+    }
+</style>
+
+<br />
+
+
+<ol class="breadcrumb">
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li class="active"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;微信公众号粉丝</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">微信公众号粉丝</div>
+    <div class="panel-body">
+
+        <div class="row" style="margin-bottom: 15px;">
+            <div class="col-md-4">
+                <form class="form-inline" action="~/Admin/Subscribes/List" role="search" method="get">
+
+                    <div class="form-group">
+                        <label for="nickname">用户名</label>
+
+
+                        @if (!string.IsNullOrEmpty(ViewBag.SearchParam))
+                        {
+                            <input type="text" name="n" class="form-control" id="nickname" value="@ViewBag.SearchParam">
+
+                        }
+                        else
+                        {
+                            <input type="text" name="n" class="form-control" id="nickname">
+
+                        }
+                    </div>
+
+                    <button type="submit" class="btn btn-default">搜索</button>
+
+                </form>
+            </div>
+            <div class="col-md-2">
+
+
+
+                @if (!string.IsNullOrEmpty(ViewBag.SearchParam))
+                {
+                    @Html.ActionLink("积分降序", "List", "Subscribes", new { n = ViewBag.SearchParam, so = 1 }, new { @class = "btn btn-default" })
+
+                }
+                else
+                {
+                    @Html.ActionLink("积分降序", "List", "Subscribes", new { so = 1 }, new { @class = "btn btn-default" })
+
+                }
+
+            </div>
+        </div>
+
+
+
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            用户名
+                        </th>
+                        <th>
+                            地点
+                        </th>
+                        <th>
+                            性别
+                        </th>
+                        <th>
+                            积分
+                        </th>
+                        <th>
+                            粉丝总数
+                        </th>
+                        <th>
+                            粉丝剩余
+                        </th>
+                        <th>
+                            粉丝跑路
+                        </th>
+                        <th>
+                            粉丝留存率
+                        </th>
+                        <th>
+                            关注来源
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="@item.HeadImgUrl" width="50" height="50" /><br />
+                                <span style="font-size: 10px; color: grey;">
+                                    @Html.DisplayFor(modelItem => item.SubscribeTime)
+                                </span>
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NickName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Country)
+                                @Html.DisplayFor(modelItem => item.Province)
+                                @Html.DisplayFor(modelItem => item.City)
+                            </td>
+
+
+                            <td>
+
+
+                                @Html.SexNumberToString(item.Sex)
+
+                            </td>
+                            <td>
+
+                                <span class="label label-warning">@Html.DisplayFor(modelItem => item.Score)</span>
+
+
+
+
+
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FansCount)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FansStayCount)
+                            </td>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FansLeaveCount)
+
+                            </td>
+                            <td>
+                                <span style="font-size: 10px; ">
+                                    @item.FansStayPercent
+                                </span>
+
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-success" style="width: @item.FansStayPercent">
+                                        <span class="sr-only"></span>
+                                    </div>
+
+                                    <div class="progress-bar progress-bar-danger" style="width:@item.FansLeavePercent">
+                                        <span class="sr-only"></span>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td style="text-align: center;">
+
+                                @if (item.FromOpenID != null)
+                                {
+
+                                    <a href="~/Admin/Subscribes/Subscribe?openid=@item.FromOpenID" target="_blank">
+                                        <img src="@item.FromHeadImgUrl" width="50" height="50" /><br />
+                                        @Html.DisplayFor(modelItem => item.FromNickName)
+                                    </a>
+                                }
+                                else
+                                {
+                                    <label class="label label-warning">自行关注</label>
+                                }
+
+
+
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                @Html.PagedListPager((IPagedList)Model,page => Url.Action("List",new { id = page, so = ViewBag.OrderType, n = ViewBag.SearchParam }))
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+
+}
