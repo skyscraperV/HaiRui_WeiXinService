@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "SelectTempLate";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 
@@ -14,22 +14,26 @@
 </ol>
 
 <div class="panel panel-info">
-    <div class="panel-heading">选择海报背景模板  @Html.ActionLink("活动进行中的海报", "CurrentQRCode", new { AccountID = ViewBag.AccountID },new{target="_bank",@class="pull-right"}) </div>
+    <div class="panel-heading">选择海报背景模板  @Html.ActionLink("活动进行中的海报", "CurrentQRCode", new { AccountID = ViewBag.AccountID }, new { target = "_bank", @class = "pull-right" }) </div>
     <div class="panel-body">
 
         <div class="row">
             @foreach (var item in Model)
             {
-                <div class="col-sm-2">
+                <div class="col-sm-3">
                     <div class="thumbnail">
                         <img src="@Html.QiNiuImage(item.ExampleUrl)" alt="...">
-                        <div class="caption">
-                            <h3>@item.TemplateName</h3>
-                            <p>
+                        <div class="caption text-center">
+                            <h3 class="text-center">@item.TemplateName</h3>
+
+                            <div class="btn-group" role="group">
                                 @Html.ActionLink("选择", "SetQRCodeBgImg", new { AccountID = ViewBag.AccountID, TemplateID = item.TemplateID }, new { @class = "btn btn-success" })
 
-                                <a href="@Html.QiNiuImage(item.TemplatePSDUrl)" class="btn btn-default" target="_blank">下载PSD</a>
-                               </p>
+                                <a href="@Html.QiNiuImage(item.TemplatePSDUrl)" class="btn btn-warning" target="_blank">下载PSD</a>
+                            </div>
+
+
+
                         </div>
                     </div>
 

@@ -6,11 +6,21 @@ using System.Web.Mvc;
 
 namespace WS.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            return View();
+
+            if (Session["CurrentAccountID"] == null)
+            {
+
+                return RedirectToAction("Select", "OfficialAccounts", new { Area = "Admin" });
+
+            }
+            return RedirectToAction("Index", "OfficialAccounts", new { Area = "Admin" });
+
+
         }
 
         public ActionResult About()

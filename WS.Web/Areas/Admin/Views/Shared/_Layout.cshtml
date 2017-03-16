@@ -10,27 +10,70 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("主页", "Index", "Home")</li>
-                    <li>@Html.ActionLink("关于", "About", "Home")</li>
-                    <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @*@Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+            <a class="navbar-brand" href="~/Home/Index">
+                <span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;<strong class="text-primary">迷漫</strong><strong>科技</strong>
+                （@Html.Action("_GetCurrentAccountName", "OfficialAccounts", new { Area = "Admin" })）
+            </a>
+        </div>
+        @*<div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("主页", "Index", "Home")</li>
+                        <li>@Html.ActionLink("关于", "About", "Home")</li>
+                        <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
+                    </ul>
+                </div>*@
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.Name <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">@Html.ActionLink("切换公众号", "Select", "OfficialAccounts", new { Area = "Admin" }, null)</a></li>
+                    <li><a href="#">@Html.ActionLink("退出", "LogOff", "Users", new { Area = "" }, null)</a></li>
+
                 </ul>
+            </li>
+
+
+        </ul>
+    </div>
+</div>
+<div class="row" style="height:65px;"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="list-group">
+
+
+                    @Html.ActionLink("基本信息设置", "Edit_BaseInfo", "OfficialAccounts", new { Area = "Admin" }, new { @class = "list-group-item" })
+                    @Html.ActionLink("设置海报背景", "SelectTempLate", "OfficialAccounts", new { Area = "Admin" }, new { @class = "list-group-item" })
+                    @Html.ActionLink("自定义菜单", "Index", "Menu", new { Area = "Admin" }, new { @class = "list-group-item" })
+                    @Html.ActionLink("提示语设置", "Edit_PromptLanguage", "OfficialAccounts", new { Area = "Admin" }, new { @class = "list-group-item" })
+                    @Html.ActionLink("积分设置", "Edit_Score", "OfficialAccounts", new { Area = "Admin" }, new { @class = "list-group-item" })
+                    @Html.ActionLink("有赞信息设置", "Edit_YouZan", "OfficialAccounts", new { Area = "Admin" }, new { @class = "list-group-item" })
+                    @Html.ActionLink("活动区域设置", "Edit_Area", "OfficialAccounts", new { Area = "Admin" }, new { @class = "list-group-item" })
+
+                    @Html.ActionLink("粉丝查询", "List", "Subscribes", new { Area = "Admin" }, new { @class = "list-group-item" })
+
+
+                    @Html.ActionLink("添加商品", "Add", "Goods", new { Area = "Admin" }, new { @class = "list-group-item" })
+                    @Html.ActionLink("商品管理", "MyList", "Goods", new { Area = "Admin" }, new { @class = "list-group-item" })
+                    @Html.ActionLink("订单处理", "List", "Orders", new { Area = "Admin" }, new { @class = "list-group-item" })
+                </div>
+            </div>
+            <div class="col-md-10">
+                @RenderBody()
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
