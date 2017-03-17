@@ -4,9 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
+using Senparc.Weixin.MP.Containers;
 using Senparc.Weixin.MP.Entities;
 using Senparc.Weixin.MP.Entities.Request;
 using Senparc.Weixin.MP.MessageHandlers;
+using WS.BLL;
+using WS.Handler.WeiXinService;
+using WS.Model;
 
 namespace WS.Handler
 {
@@ -74,7 +79,7 @@ namespace WS.Handler
         /// <returns></returns>
         public override IResponseMessageBase OnEvent_ClickRequest(RequestMessageEvent_Click requestMessage)
         {
-           
+
 
             return null;
 
@@ -84,7 +89,7 @@ namespace WS.Handler
 
         public override IResponseMessageBase OnEvent_ViewRequest(RequestMessageEvent_View requestMessage)
         {
-          
+
             return null;
         }
 
@@ -93,7 +98,7 @@ namespace WS.Handler
         public override IResponseMessageBase OnEvent_LocationRequest(RequestMessageEvent_Location requestMessage)
         {
 
-           
+
             return null;
         }
 
@@ -112,7 +117,8 @@ namespace WS.Handler
         /// <returns></returns>
         public override IResponseMessageBase OnEvent_SubscribeRequest(RequestMessageEvent_Subscribe requestMessage)
         {
-
+            SubscribeService ss = new SubscribeService();
+            ss.Subscribe(requestMessage);
 
             return null;
 
@@ -132,7 +138,8 @@ namespace WS.Handler
         public override IResponseMessageBase OnEvent_UnsubscribeRequest(RequestMessageEvent_Unsubscribe requestMessage)
         {
 
-
+            SubscribeService ss = new SubscribeService();
+            ss.UnSubscribe(requestMessage);
             return null;
 
 
@@ -142,8 +149,33 @@ namespace WS.Handler
 
         public override IResponseMessageBase OnTextRequest(RequestMessageText requestMessage)
         {
+            
 
+            if (requestMessage.Content == "获取海报")
+            {
+             
+                //string path = HttpContext.Current.Server.MapPath("~/Temp/");
+                string path = @"E:/test/temp/";
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+
+               
+                    HaiBaoService hs = new HaiBaoService();
+                    hs.GetHaiBao(requestMessage.FromUserName, requestMessage.ToUserName, path);
            
+
+
+                //HaiBaoService.GetHaiBaoDelegate hdel = new HaiBaoService.GetHaiBaoDelegate(HaiBaoService.CreateHaiBao);
+                //IAsyncResult result = hdel.BeginInvoke(requestMessage, path, HaiBaoService.GetHaiBaoCallback, null);
+                //hdel.EndInvoke(result);
+                var responseMessage = this.CreateResponseMessage<ResponseMessageText>();
+                responseMessage.Content = "正在发送海报，大约需要几秒钟，请稍候...";
+
+
+                return responseMessage;
+            }
 
             return null;
 

@@ -19,6 +19,7 @@ namespace WS.Model
         public Nullable<System.Guid> AccountID { get; set; }
         public Nullable<System.Guid> CategoryID { get; set; }
         public Nullable<System.DateTime> CreateTime { get; set; }
+        public string ReplyType { get; set; }
     
         public virtual AutoReply_Category AutoReply_Category { get; set; }
         public virtual OfficialAccount OfficialAccount { get; set; }

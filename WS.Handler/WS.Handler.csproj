@@ -38,6 +38,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,9 +51,25 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WeiXinMessageContext.cs" />
     <Compile Include="WeiXinMessageHandler.cs" />
+    <Compile Include="WeiXinService\HaiBaoService.cs" />
+    <Compile Include="WeiXinService\SubscribeService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WS.BLL\WS.BLL.csproj">
+      <Project>{cca3063d-bc28-4596-8482-c97cf779e394}</Project>
+      <Name>WS.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WS.Model\WS.Model.csproj">
+      <Project>{d04a2739-425d-4e92-b7ec-813e285ffb2b}</Project>
+      <Name>WS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WS.Utility\WS.Utility.csproj">
+      <Project>{7baf23e6-468a-42fc-a03c-324519917080}</Project>
+      <Name>WS.Utility</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

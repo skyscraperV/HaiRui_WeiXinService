@@ -115,32 +115,30 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
     <EntityDeploy Include="WSDBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>WSDBModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="packages.config" />
     <None Include="WSDBModel.edmx.diagram">
       <DependentUpon>WSDBModel.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="WSDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>WSDBModel.Context.cs</LastGenOutput>
       <DependentUpon>WSDBModel.edmx</DependentUpon>
+      <LastGenOutput>WSDBModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="WSDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>WSDBModel.edmx</DependentUpon>
       <LastGenOutput>WSDBModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
