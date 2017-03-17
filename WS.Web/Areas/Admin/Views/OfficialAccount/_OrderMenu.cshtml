@@ -1,0 +1,7 @@
+﻿@model IEnumerable<WS.Model.OfficialAccount>
+@foreach (var item in Model)
+{
+    <li>
+        @Html.ActionLink(item.WeiXinName, "List", "Goods_Order", new { Area = "Admin", AccountID = item.AccountID }, null)
+    </li>
+}

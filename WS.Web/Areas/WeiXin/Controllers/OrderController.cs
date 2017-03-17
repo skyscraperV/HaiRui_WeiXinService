@@ -23,7 +23,7 @@ namespace WS.Web.Areas.WeiXin.Controllers
 
 
 
-            Orders_BLL obll = new Orders_BLL();
+            Goods_Order_BLL obll = new Goods_Order_BLL();
             int count = obll.GetCount(a => a.GoodID == GoodID && a.SubscribeID == SubscribeID);
 
 
@@ -50,7 +50,7 @@ namespace WS.Web.Areas.WeiXin.Controllers
 
 
 
-            Orders order = new Orders();
+            Goods_Order order = new Goods_Order();
             order.OrderID = Guid.NewGuid();
             order.GoodID = GoodID;
             order.SubscribeID = SubscribeID;
@@ -58,18 +58,18 @@ namespace WS.Web.Areas.WeiXin.Controllers
             order.UserID = good.UserID;
 
 
-            AutoMapper.Mapper.CreateMap<Orders, Orders_ViewModel>();
-            Orders_ViewModel model = AutoMapper.Mapper.Map<Orders_ViewModel>(order);
-            model.CategoryName = good.Goods_Categorys.CategoryName;
-            model.SendWayName = good.Goods_SendWays.SendWayName;
+            AutoMapper.Mapper.CreateMap<Goods_Order, Goods_Order_ViewModel>();
+            Goods_Order_ViewModel model = AutoMapper.Mapper.Map<Goods_Order_ViewModel>(order);
+            model.CategoryName = good.Goods_Category.CategoryName;
+            model.SendWayName = good.Goods_SendWay.SendWayName;
 
             return View(model);
         }
         [HttpPost]
-        public ActionResult Add(Orders_ViewModel model)
+        public ActionResult Add(Goods_Order_ViewModel model)
         {
-            AutoMapper.Mapper.CreateMap<Orders_ViewModel, Orders>();
-            Orders order = AutoMapper.Mapper.Map<Orders>(model);
+            AutoMapper.Mapper.CreateMap<Goods_Order_ViewModel, Goods_Order>();
+            Goods_Order order = AutoMapper.Mapper.Map<Goods_Order>(model);
             order.State = "未发货";
 
             if (model.CategoryName == "虚拟商品")
@@ -79,13 +79,13 @@ namespace WS.Web.Areas.WeiXin.Controllers
             }
 
             order.CreateTime = DateTime.Now;
-            Orders_BLL bll = new Orders_BLL();
+            Goods_Order_BLL bll = new Goods_Order_BLL();
             bll.Add(order);
             Goods_BLL gbll = new Goods_BLL();
             Goods good = gbll.Get(a => a.GoodID == model.GoodID);
 
-            Subscribes_BLL sbll = new Subscribes_BLL();
-            Subscribes sub = sbll.Get(a => a.SubscribeID == model.SubscribeID);
+            Subscriber_BLL sbll = new Subscriber_BLL();
+            Subscriber sub = sbll.Get(a => a.SubscribeID == model.SubscribeID);
 
             if (sub.Score >= 0 && sub.Score >= good.CostScore)
             {
@@ -104,9 +104,9 @@ namespace WS.Web.Areas.WeiXin.Controllers
 
                 good.Count = good.Count - 1;
                 gbll.Update(good);
-                //Subscribes sub = new Subscribes_BLL().Get(a => a.SubscribeID == model.SubscribeID);
+                //Subscriber sub = new Subscriber_BLL().Get(a => a.SubscribeID == model.SubscribeID);
 
-                //string link = WeiXinHelper.AuthorizeUrl(sub.OfficialAccounts.AppID, Url.Content("~/WeiXin/Order/MyList"),
+                //string link = WeiXinHelper.AuthorizeUrl(sub.OfficialAccount.AppID, Url.Content("~/WeiXin/Order/MyList"),
                 //    sub.AccountID.ToString());
 
                 return RedirectToAction("MyList", "Order", new { SubscribeID = model.SubscribeID });
@@ -123,7 +123,7 @@ namespace WS.Web.Areas.WeiXin.Controllers
         public ActionResult MyList(Guid SubscribeID)
         {
 
-            List<Orders> list = new Orders_BLL().GetList(a => a.SubscribeID == SubscribeID).OrderByDescending(a => a.CreateTime).ToList();
+            List<Goods_Order> list = new Goods_Order_BLL().GetList(a => a.SubscribeID == SubscribeID).OrderByDescending(a => a.CreateTime).ToList();
 
             return View(list);
 
@@ -133,9 +133,9 @@ namespace WS.Web.Areas.WeiXin.Controllers
 
         public ActionResult Details(Guid orderid)
         {
-            Orders order = new Orders_BLL().Get(a => a.OrderID == orderid);
-            AutoMapper.Mapper.CreateMap<Orders, Orders_Total_ViewModel>();
-            Orders_Total_ViewModel model = AutoMapper.Mapper.Map<Orders_Total_ViewModel>(order);
+            Goods_Order order = new Goods_Order_BLL().Get(a => a.OrderID == orderid);
+            AutoMapper.Mapper.CreateMap<Goods_Order, Goods_Order_Total_ViewModel>();
+            Goods_Order_Total_ViewModel model = AutoMapper.Mapper.Map<Goods_Order_Total_ViewModel>(order);
 
             return View(model);
         }
@@ -149,7 +149,7 @@ namespace WS.Web.Areas.WeiXin.Controllers
 
             Guid accountid = Guid.Parse(state.Trim());
 
-            OfficialAccounts off = new OfficialAccounts_BLL().Get(a => a.AccountID == accountid);
+            OfficialAccount off = new OfficialAccount_BLL().Get(a => a.AccountID == accountid);
 
             OAuthAccessTokenResult result = new OAuthAccessTokenResult();
             //通过，用code换取access_token
@@ -193,11 +193,11 @@ namespace WS.Web.Areas.WeiXin.Controllers
             Session["OAuthAccessToken"] = result;
             OAuthUserInfo info = OAuthApi.GetUserInfo(result.access_token, result.openid);
 
-            Subscribes_BLL subbll = new Subscribes_BLL();
+            Subscriber_BLL subbll = new Subscriber_BLL();
 
-            Subscribes mysub = subbll.Get(a => a.OpenID == info.openid);
+            Subscriber mysub = subbll.Get(a => a.OpenID == info.openid);
 
-            List<Orders> list = new Orders_BLL().GetList(a => a.SubscribeID == mysub.SubscribeID).OrderByDescending(a => a.CreateTime).ToList();
+            List<Goods_Order> list = new Goods_Order_BLL().GetList(a => a.SubscribeID == mysub.SubscribeID).OrderByDescending(a => a.CreateTime).ToList();
 
             return View("MyList", list);
         }

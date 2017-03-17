@@ -1,0 +1,152 @@
+﻿@model WS.Model.Goods_Order
+
+@{
+    ViewBag.Title = "FaHuo2";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<br/>
+<ol class="breadcrumb">
+           <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+        <li><a href="~/Admin/OfficialAccount/MyList"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;微信公众号管理</a></li>
+        <li class="active"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加微信公众号</li>
+</ol>
+
+<div class="panel panel-info">
+  <div class="panel-heading">FaHuo2</div>
+  <div class="panel-body">
+@using (Html.BeginForm("FaHuo2", "Goods_Order", new{Area="Admin"},FormMethod.Post, new { @class = "form-horizontal",role="form" })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, null, new { @class = "alert alert-danger alert-dismissable" })
+  
+    <div class="form-group">
+           @Html.LabelFor(model => model.OrderID, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.OrderID, new { @class = "form-control",placeholder="OrderID"}) 
+		   @Html.ValidationMessageFor(model => model.OrderID)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.GoodID, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.GoodID, new { @class = "form-control",placeholder="GoodID"}) 
+		   @Html.ValidationMessageFor(model => model.GoodID)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.SubscribeID, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.SubscribeID, new { @class = "form-control",placeholder="SubscribeID"}) 
+		   @Html.ValidationMessageFor(model => model.SubscribeID)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.Address, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.Address, new { @class = "form-control",placeholder="Address"}) 
+		   @Html.ValidationMessageFor(model => model.Address)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.PhoneNumber, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control",placeholder="PhoneNumber"}) 
+		   @Html.ValidationMessageFor(model => model.PhoneNumber)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.ZipCode, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.ZipCode, new { @class = "form-control",placeholder="ZipCode"}) 
+		   @Html.ValidationMessageFor(model => model.ZipCode)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.ContactPerson, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.ContactPerson, new { @class = "form-control",placeholder="ContactPerson"}) 
+		   @Html.ValidationMessageFor(model => model.ContactPerson)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.State, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.State, new { @class = "form-control",placeholder="State"}) 
+		   @Html.ValidationMessageFor(model => model.State)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.CreateTime, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.CreateTime, new { @class = "form-control",placeholder="CreateTime"}) 
+		   @Html.ValidationMessageFor(model => model.CreateTime)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.AccountID, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.AccountID, new { @class = "form-control",placeholder="AccountID"}) 
+		   @Html.ValidationMessageFor(model => model.AccountID)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.UserID, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.UserID, new { @class = "form-control",placeholder="UserID"}) 
+		   @Html.ValidationMessageFor(model => model.UserID)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.ExpressCompany, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.ExpressCompany, new { @class = "form-control",placeholder="ExpressCompany"}) 
+		   @Html.ValidationMessageFor(model => model.ExpressCompany)
+           
+    </div>
+   </div>
+    
+    <div class="form-group">
+           @Html.LabelFor(model => model.ExpressNumber, new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+           @Html.TextBoxFor(model => model.ExpressNumber, new { @class = "form-control",placeholder="ExpressNumber"}) 
+		   @Html.ValidationMessageFor(model => model.ExpressNumber)
+           
+    </div>
+   </div>
+    <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-8">
+      <button type="submit" class="btn btn-default">提交</button>
+    </div>
+  </div>
+}
+  </div>
+  </div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -17,7 +17,7 @@ namespace WS.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Goods()
         {
-            this.Orders = new HashSet<Orders>();
+            this.Goods_Order = new HashSet<Goods_Order>();
         }
     
         public System.Guid GoodID { get; set; }
@@ -37,11 +37,11 @@ namespace WS.Model
         public Nullable<System.Guid> CategoryID { get; set; }
         public Nullable<bool> IsSelling { get; set; }
     
-        public virtual Goods_Categorys Goods_Categorys { get; set; }
-        public virtual OfficialAccounts OfficialAccounts { get; set; }
-        public virtual Goods_SendWays Goods_SendWays { get; set; }
+        public virtual Goods_Category Goods_Category { get; set; }
+        public virtual OfficialAccount OfficialAccount { get; set; }
+        public virtual Goods_SendWay Goods_SendWay { get; set; }
         public virtual Users Users { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders { get; set; }
+        public virtual ICollection<Goods_Order> Goods_Order { get; set; }
     }
 }

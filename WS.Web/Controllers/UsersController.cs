@@ -97,8 +97,8 @@ namespace WS.Web.Controllers
 
             user.CreateTime = DateTime.Now;
 
-            Users_Roles_BLL urbll = new Users_Roles_BLL();
-            Users_Roles ur = urbll.Get(a => a.RoleName == "普通用户");
+            Users_Role_BLL urbll = new Users_Role_BLL();
+            Users_Role ur = urbll.Get(a => a.RoleName == "普通用户");
             user.RoleID = ur.RoleID;
             if (bll.Add(user) > 0)
             {

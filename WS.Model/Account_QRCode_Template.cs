@@ -20,7 +20,7 @@ namespace WS.Model
         public Nullable<System.DateTime> CreateTime { get; set; }
         public string QRCodeBgImg { get; set; }
     
-        public virtual OfficialAccounts OfficialAccounts { get; set; }
-        public virtual QRCode_Templates QRCode_Templates { get; set; }
+        public virtual OfficialAccount OfficialAccount { get; set; }
+        public virtual QRCode_Template QRCode_Template { get; set; }
     }
 }

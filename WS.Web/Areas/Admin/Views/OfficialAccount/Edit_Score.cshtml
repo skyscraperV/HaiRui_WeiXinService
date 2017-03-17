@@ -1,0 +1,84 @@
+﻿@model WS.ViewModel.OfficialAccount_Score_ViewModel
+
+@{
+    ViewBag.Title = "Edit_Score";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+    <br />
+    <div class="panel panel-info">
+        <div class="panel-heading">编辑基本信息</div>
+        <div class="panel-body">
+            @using (Html.BeginForm("Edit_Score", "OfficialAccount", new { Area = "Admin" }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, null, new { @class = "alert alert-danger alert-dismissable" })
+
+                @Html.HiddenFor(model => model.AccountID)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SubscribeAddScore, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.SubscribeAddScore, new { @class = "form-control", placeholder = "SubscribeAddScore" })
+                        @Html.ValidationMessageFor(model => model.SubscribeAddScore)
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UnSubscribeReduceScore, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.UnSubscribeReduceScore, new { @class = "form-control", placeholder = "UnSubscribeReduceScore" })
+                        @Html.ValidationMessageFor(model => model.UnSubscribeReduceScore)
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SubscribeParentAddScore, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.SubscribeParentAddScore, new { @class = "form-control", placeholder = "SubscribeParentAddScore" })
+                        @Html.ValidationMessageFor(model => model.SubscribeParentAddScore)
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UnSubscribeParentReduceScore, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.UnSubscribeParentReduceScore, new { @class = "form-control", placeholder = "UnSubscribeParentReduceScore" })
+                        @Html.ValidationMessageFor(model => model.UnSubscribeParentReduceScore)
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.SignAddScore, new { @class = "col-sm-2 control-label" })
+                    <div class="col-sm-10">
+                        @Html.TextBoxFor(model => model.SignAddScore, new { @class = "form-control", placeholder = "OriginalID" })
+                        @Html.ValidationMessageFor(model => model.SignAddScore)
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-8">
+                        <button type="submit" class="btn btn-default">提交</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

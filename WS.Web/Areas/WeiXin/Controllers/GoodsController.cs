@@ -18,9 +18,9 @@ namespace WS.Web.Areas.WeiXin.Controllers
         {
             ViewBag.SubscribeID = SubscribeID;
 
-            Subscribes_BLL subbll = new Subscribes_BLL();
+            Subscriber_BLL subbll = new Subscriber_BLL();
 
-            Subscribes mysub = subbll.Get(a => a.SubscribeID == SubscribeID);
+            Subscriber mysub = subbll.Get(a => a.SubscribeID == SubscribeID);
             ViewBag.MyScore = mysub.Score;
             Goods_BLL bll = new Goods_BLL();
             List<Goods> sourselist = bll.GetList(a => a.AccountID == mysub.AccountID && a.IsSelling == true && a.Count > 0).OrderByDescending(a => a.CreateTime).ToList();

@@ -22,13 +22,13 @@ namespace WS.Web.Areas.Admin.Controllers
         {
             if (Session["CurrentAccountID"] == null)
             {
-                return RedirectToAction("Select", "OfficialAccounts", new { Area = "Admin" });
+                return RedirectToAction("Select", "OfficialAccount", new { Area = "Admin" });
             }
             Guid accountid = Guid.Parse(Session["CurrentAccountID"].ToString());
 
             ViewBag.AccountID = accountid;
-            OfficialAccounts_BLL bll = new OfficialAccounts_BLL();
-            OfficialAccounts oa = bll.Get(a => a.AccountID == accountid);
+            OfficialAccount_BLL bll = new OfficialAccount_BLL();
+            OfficialAccount oa = bll.Get(a => a.AccountID == accountid);
             ViewBag.AppID = oa.AppID;
             string accessToken = AccessTokenContainer.TryGetAccessToken(oa.AppID, oa.AppSecret);
 
@@ -42,8 +42,8 @@ namespace WS.Web.Areas.Admin.Controllers
         public ActionResult GetMenuJson(Guid accountid)
         {
 
-            OfficialAccounts_BLL bll = new OfficialAccounts_BLL();
-            OfficialAccounts oa = bll.Get(a => a.AccountID == accountid);
+            OfficialAccount_BLL bll = new OfficialAccount_BLL();
+            OfficialAccount oa = bll.Get(a => a.AccountID == accountid);
 
             string accessToken = AccessTokenContainer.TryGetAccessToken(oa.AppID, oa.AppSecret);
 
@@ -71,8 +71,8 @@ namespace WS.Web.Areas.Admin.Controllers
             var jsonResult = js.Deserialize<GetMenuResultFull>(menustr);
             ButtonGroup bg = new ButtonGroup();
             GetMenuResult aasaas = CommonApi.GetMenuFromJsonResult(jsonResult, bg);
-            OfficialAccounts_BLL bll = new OfficialAccounts_BLL();
-            OfficialAccounts oa = bll.Get(a => a.AccountID == id);
+            OfficialAccount_BLL bll = new OfficialAccount_BLL();
+            OfficialAccount oa = bll.Get(a => a.AccountID == id);
             string accessToken = AccessTokenContainer.TryGetAccessToken(oa.AppID, oa.AppSecret);
             Senparc.Weixin.Entities.WxJsonResult rrr = CommonApi.CreateMenu(accessToken, aasaas.menu);
             return Json(rrr.errcode.ToString(), JsonRequestBehavior.AllowGet);

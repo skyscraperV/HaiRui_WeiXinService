@@ -41,7 +41,7 @@
 <br />
 <ol class="breadcrumb">
     <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
-    <li><a href="~/Admin/OfficialAccounts/MyList"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;微信公众号管理</a></li>
+    <li><a href="~/Admin/OfficialAccount/MyList"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;微信公众号管理</a></li>
     <li class="active"><span class="glyphicon glyphicon-plus"></span>&nbsp;&nbsp;添加微信公众号</li>
 </ol>
 
@@ -269,7 +269,7 @@
                 document.getElementById("viewradio").checked = true;
                 document.getElementById("clickradio").checked = false;
 
-                var url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + currentappid + "&redirect_uri=http://i.WSyun.com/weixin/subscribes/index&response_type=code&scope=snsapi_userinfo&state=" + currentaccountid + "#wechat_redirect";
+                var url = "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" + currentappid + "&redirect_uri=http://i.WSyun.com/weixin/Subscriber/index&response_type=code&scope=snsapi_userinfo&state=" + currentaccountid + "#wechat_redirect";
 
                 $("#keyorurl").val(url);
             });

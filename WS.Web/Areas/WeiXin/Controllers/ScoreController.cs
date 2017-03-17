@@ -21,9 +21,9 @@ namespace WS.Web.Areas.WeiXin.Controllers
             //return Content(aaa);
 
 
-            OfficialAccounts_BLL obll = new OfficialAccounts_BLL();
+            OfficialAccount_BLL obll = new OfficialAccount_BLL();
             Guid id = Guid.Parse(state);
-            OfficialAccounts off = obll.Get(a => a.AccountID == id);
+            OfficialAccount off = obll.Get(a => a.AccountID == id);
 
             //return Content(off.AppID.Trim()+";"+ off.AppSecret.Trim());
 
@@ -39,13 +39,13 @@ namespace WS.Web.Areas.WeiXin.Controllers
 
             //string openid = "oqbOQs7w9UNUdksAEnd5zwIxUNCE";
 
-            Subscribes_BLL subbll = new Subscribes_BLL();
+            Subscriber_BLL subbll = new Subscriber_BLL();
 
-            Subscribes mysub = subbll.Get(a => a.OpenID == info.openid);
+            Subscriber mysub = subbll.Get(a => a.OpenID == info.openid);
             if (mysub != null)
             {
                 //获取我的粉丝
-                List<Subscribes> fans =
+                List<Subscriber> fans =
                     subbll.GetList(a => a.FromOpenID == info.openid).OrderBy(a => a.SubscribeTime).ToList();
                 ViewBag.FansList = fans;
                 //获取的我的分数
@@ -62,7 +62,7 @@ namespace WS.Web.Areas.WeiXin.Controllers
             }
             else
             {
-                ViewBag.FansList = new List<Subscribes>();
+                ViewBag.FansList = new List<Subscriber>();
                 ViewBag.MyScore = 0;
 
             }
@@ -77,13 +77,13 @@ namespace WS.Web.Areas.WeiXin.Controllers
         {
 
 
-            Subscribes_BLL subbll = new Subscribes_BLL();
+            Subscriber_BLL subbll = new Subscriber_BLL();
 
-            Subscribes mysub = subbll.Get(a => a.SubscribeID == SubscribeID);
+            Subscriber mysub = subbll.Get(a => a.SubscribeID == SubscribeID);
             if (mysub != null)
             {
                 //获取我的粉丝
-                List<Subscribes> fans =
+                List<Subscriber> fans =
                     subbll.GetList(a => a.FromOpenID == mysub.OpenID).OrderBy(a => a.SubscribeTime).ToList();
                 ViewBag.FansList = fans;
                 //获取的我的分数
@@ -99,14 +99,14 @@ namespace WS.Web.Areas.WeiXin.Controllers
             }
             else
             {
-                ViewBag.FansList = new List<Subscribes>();
+                ViewBag.FansList = new List<Subscriber>();
                 ViewBag.MyScore = 0;
 
             }
 
 
 
-            //Subscribes_ViewModel mysubvm = new Subscribes_ViewModel
+            //Subscriber_ViewModel mysubvm = new Subscriber_ViewModel
             //{
             //    SubscribeID = mysub.SubscribeID,
             //    NickName = info.nickname,

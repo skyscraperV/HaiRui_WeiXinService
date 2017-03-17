@@ -21,13 +21,13 @@ namespace WS.Web.Areas.Admin.Controllers
         {
             if (Session["CurrentAccountID"] == null)
             {
-                return RedirectToAction("Select", "OfficialAccounts", new { Area = "Admin" });
+                return RedirectToAction("Select", "OfficialAccount", new { Area = "Admin" });
             }
             Guid accountid = Guid.Parse(Session["CurrentAccountID"].ToString());
 
-            Goods_SendWays_BLL sendbll = new Goods_SendWays_BLL();
+            Goods_SendWay_BLL sendbll = new Goods_SendWay_BLL();
             ViewBag.SendWaysList = new SelectList(sendbll.GetList().OrderBy(a => a.SendWayOrder), "SendWayID", "SendWayName");
-            Goods_Categorys_BLL categorybll = new Goods_Categorys_BLL();
+            Goods_Category_BLL categorybll = new Goods_Category_BLL();
             ViewBag.GoodsCategorysList = new SelectList(categorybll.GetList().OrderBy(a => a.CategoryOrder), "CategoryID", "CategoryName");
 
 
@@ -91,9 +91,9 @@ namespace WS.Web.Areas.Admin.Controllers
             {
                 ModelState.AddModelError("", "添加失败，请稍后再试！");
 
-                Goods_SendWays_BLL sendbll = new Goods_SendWays_BLL();
+                Goods_SendWay_BLL sendbll = new Goods_SendWay_BLL();
                 ViewBag.SendWaysList = new SelectList(sendbll.GetList().OrderBy(a => a.SendWayOrder), "SendWayID", "SendWayName");
-                Goods_Categorys_BLL categorybll = new Goods_Categorys_BLL();
+                Goods_Category_BLL categorybll = new Goods_Category_BLL();
                 ViewBag.GoodsCategorysList = new SelectList(categorybll.GetList().OrderBy(a => a.CategoryOrder), "CategoryID", "CategoryName");
 
 
@@ -109,9 +109,9 @@ namespace WS.Web.Areas.Admin.Controllers
         {
 
 
-            Goods_SendWays_BLL sendbll = new Goods_SendWays_BLL();
+            Goods_SendWay_BLL sendbll = new Goods_SendWay_BLL();
             ViewBag.SendWaysList = new SelectList(sendbll.GetList().OrderBy(a => a.SendWayOrder), "SendWayID", "SendWayName");
-            Goods_Categorys_BLL categorybll = new Goods_Categorys_BLL();
+            Goods_Category_BLL categorybll = new Goods_Category_BLL();
             ViewBag.GoodsCategorysList = new SelectList(categorybll.GetList().OrderBy(a => a.CategoryOrder), "CategoryID", "CategoryName");
 
 
@@ -173,9 +173,9 @@ namespace WS.Web.Areas.Admin.Controllers
                 ModelState.AddModelError("", "修改失败，请稍后再试！");
 
 
-                Goods_SendWays_BLL sendbll = new Goods_SendWays_BLL();
+                Goods_SendWay_BLL sendbll = new Goods_SendWay_BLL();
                 ViewBag.SendWaysList = new SelectList(sendbll.GetList().OrderBy(a => a.SendWayOrder), "SendWayID", "SendWayName");
-                Goods_Categorys_BLL categorybll = new Goods_Categorys_BLL();
+                Goods_Category_BLL categorybll = new Goods_Category_BLL();
                 ViewBag.GoodsCategorysList = new SelectList(categorybll.GetList().OrderBy(a => a.CategoryOrder), "CategoryID", "CategoryName");
 
 
@@ -188,7 +188,7 @@ namespace WS.Web.Areas.Admin.Controllers
         {
             if (Session["CurrentAccountID"] == null)
             {
-                return RedirectToAction("Select", "OfficialAccounts", new { Area = "Admin" });
+                return RedirectToAction("Select", "OfficialAccount", new { Area = "Admin" });
             }
             Guid accountid = Guid.Parse(Session["CurrentAccountID"].ToString());
 

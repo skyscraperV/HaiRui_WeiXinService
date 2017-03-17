@@ -15,10 +15,10 @@ namespace WS.Web.Controllers
             if (Session["CurrentAccountID"] == null)
             {
 
-                return RedirectToAction("Select", "OfficialAccounts", new { Area = "Admin" });
+                return RedirectToAction("Select", "OfficialAccount", new { Area = "Admin" });
 
             }
-            return RedirectToAction("Index", "OfficialAccounts", new { Area = "Admin" });
+            return RedirectToAction("Index", "OfficialAccount", new { Area = "Admin" });
 
 
         }

@@ -44,15 +44,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CashCouponRecords_ViewModel.cs" />
+    <Compile Include="CashCouponRecord_ViewModel.cs" />
     <Compile Include="Goods_ViewModel.cs" />
     <Compile Include="Income_ViewModel.cs" />
     <Compile Include="LayoutHeader_ViewModel.cs" />
     <Compile Include="LoginUserModel.cs" />
-    <Compile Include="OfficialAccounts_ViewModel.cs" />
-    <Compile Include="Orders_ViewModel.cs" />
+    <Compile Include="OfficialAccount_ViewModel.cs" />
+    <Compile Include="Goods_Order_ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Subscribes_ViewModel.cs" />
+    <Compile Include="Subscriber_ViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WS.Model\WS.Model.csproj">

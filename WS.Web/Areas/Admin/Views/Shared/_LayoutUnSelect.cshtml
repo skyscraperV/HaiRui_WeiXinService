@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>迷漫科技</title>
+    <title>微信服务平台</title>
     @Styles.Render("~/Content/bootstrap")
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -23,7 +23,7 @@
                 </button>
                 <a class="navbar-brand" href="~/Home/Index">
                     <span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;<strong class="text-primary">迷漫</strong><strong>科技</strong>
-                     @* （@Html.Action("_GetCurrentAccountName", "OfficialAccounts", new { Area = "Admin" })）*@
+                     @* （@Html.Action("_GetCurrentAccountName", "OfficialAccount", new { Area = "Admin" })）*@
                 </a>
             </div>
             <!-- /.navbar-header -->
@@ -50,7 +50,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.Name <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">@Html.ActionLink("切换公众号","Select", "OfficialAccounts", new { Area = "Admin" }, null)</a></li>
+                            <li><a href="#">@Html.ActionLink("切换公众号","Select", "OfficialAccount", new { Area = "Admin" }, null)</a></li>
                             <li><a href="#">@Html.ActionLink("退出", "LogOff", "Users", new { Area = "" }, null)</a></li>
                             @*<li><a href="#">Something else here</a></li>
                             <li role="separator" class="divider"></li>
@@ -89,7 +89,6 @@
     </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
       @RenderSection("scripts", required: false)
 </body>
 </html>

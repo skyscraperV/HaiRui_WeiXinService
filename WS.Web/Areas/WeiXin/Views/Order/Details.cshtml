@@ -1,4 +1,4 @@
-﻿@model WS.ViewModel.Orders_Total_ViewModel
+﻿@model WS.ViewModel.Goods_Order_Total_ViewModel
 
 @{
     Layout = null;
@@ -53,9 +53,9 @@
                 </h4>
             </div>
         </div>
-        @if (Model.Goods.Goods_Categorys.CategoryName == "实物商品")
+        @if (Model.Goods.Goods_Category.CategoryName == "实物商品")
         {
-            if (Model.Goods.Goods_SendWays.SendWayName == "快递到付" || Model.Goods.Goods_SendWays.SendWayName == "商家包邮")
+            if (Model.Goods.Goods_SendWay.SendWayName == "快递到付" || Model.Goods.Goods_SendWay.SendWayName == "商家包邮")
             {
                 <div class="row">
                     <div class="col-xs-12">

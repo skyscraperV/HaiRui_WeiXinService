@@ -22,23 +22,23 @@ namespace WS.Web.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Add(QRCode_Templates model)
+        public ActionResult Add(QRCode_Template model)
         {
             model.TemplateID = Guid.NewGuid();
-            QRCode_Templates_BLL bll = new QRCode_Templates_BLL();
+            QRCode_Template_BLL bll = new QRCode_Template_BLL();
             bll.Add(model);
             return RedirectToAction("Add");
         }
         public ActionResult List()
         {
-            QRCode_Templates_BLL bll = new QRCode_Templates_BLL();
+            QRCode_Template_BLL bll = new QRCode_Template_BLL();
             var list = bll.GetList();
             return View(list);
         }
         public ActionResult PSD(Guid id)
         {
-            QRCode_Templates_BLL bll = new QRCode_Templates_BLL();
-            QRCode_Templates temp = bll.Get(a => a.TemplateID == id);
+            QRCode_Template_BLL bll = new QRCode_Template_BLL();
+            QRCode_Template temp = bll.Get(a => a.TemplateID == id);
             return View(temp);
         }
         public ActionResult UploadPSD(Guid TemplateID, HttpPostedFileBase fileData)
@@ -48,8 +48,8 @@ namespace WS.Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    QRCode_Templates_BLL bll = new QRCode_Templates_BLL();
-                    QRCode_Templates temp = bll.Get(a => a.TemplateID == TemplateID);
+                    QRCode_Template_BLL bll = new QRCode_Template_BLL();
+                    QRCode_Template temp = bll.Get(a => a.TemplateID == TemplateID);
 
 
 
@@ -104,8 +104,8 @@ namespace WS.Web.Areas.Admin.Controllers
 
         public ActionResult Example(Guid id)
         {
-            QRCode_Templates_BLL bll = new QRCode_Templates_BLL();
-            QRCode_Templates temp = bll.Get(a => a.TemplateID == id);
+            QRCode_Template_BLL bll = new QRCode_Template_BLL();
+            QRCode_Template temp = bll.Get(a => a.TemplateID == id);
             return View(temp);
         }
         public ActionResult UploadExample(Guid TemplateID, HttpPostedFileBase fileData)
@@ -115,8 +115,8 @@ namespace WS.Web.Areas.Admin.Controllers
             {
                 try
                 {
-                    QRCode_Templates_BLL bll = new QRCode_Templates_BLL();
-                    QRCode_Templates temp = bll.Get(a => a.TemplateID == TemplateID);
+                    QRCode_Template_BLL bll = new QRCode_Template_BLL();
+                    QRCode_Template temp = bll.Get(a => a.TemplateID == TemplateID);
 
 
 

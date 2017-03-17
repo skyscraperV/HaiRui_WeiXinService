@@ -1,4 +1,4 @@
-﻿@model PagedList.StaticPagedList<WS.ViewModel.Subscribes_ViewModel>
+﻿@model PagedList.StaticPagedList<WS.ViewModel.Subscriber_ViewModel>
 @using PagedList
 @using PagedList.Mvc
 @{
@@ -26,7 +26,7 @@
 
         <div class="row" style="margin-bottom: 15px;">
             <div class="col-md-4">
-                <form class="form-inline" action="~/Admin/Subscribes/List" role="search" method="get">
+                <form class="form-inline" action="~/Admin/Subscriber/List" role="search" method="get">
 
                     <div class="form-group">
                         <label for="nickname">用户名</label>
@@ -54,12 +54,12 @@
 
                 @if (!string.IsNullOrEmpty(ViewBag.SearchParam))
                 {
-                    @Html.ActionLink("积分降序", "List", "Subscribes", new { n = ViewBag.SearchParam, so = 1 }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("积分降序", "List", "Subscriber", new { n = ViewBag.SearchParam, so = 1 }, new { @class = "btn btn-default" })
 
                 }
                 else
                 {
-                    @Html.ActionLink("积分降序", "List", "Subscribes", new { so = 1 }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("积分降序", "List", "Subscriber", new { so = 1 }, new { @class = "btn btn-default" })
 
                 }
 
@@ -173,7 +173,7 @@
                                 @if (item.FromOpenID != null)
                                 {
 
-                                    <a href="~/Admin/Subscribes/Subscribe?openid=@item.FromOpenID" target="_blank">
+                                    <a href="~/Admin/Subscriber/Subscribe?openid=@item.FromOpenID" target="_blank">
                                         <img src="@item.FromHeadImgUrl" width="50" height="50" /><br />
                                         @Html.DisplayFor(modelItem => item.FromNickName)
                                     </a>

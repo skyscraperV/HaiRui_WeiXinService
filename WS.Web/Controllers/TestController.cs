@@ -15,7 +15,7 @@ namespace WS.Web.Controllers
         public ActionResult Index()
         {
 
-            QRCode_Templates_BLL bll = new QRCode_Templates_BLL();
+            QRCode_Template_BLL bll = new QRCode_Template_BLL();
           var list=  bll.GetList();
             WebClient wc = new WebClient();
             foreach (var templatese in list)

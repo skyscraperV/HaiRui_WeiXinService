@@ -26,16 +26,20 @@ namespace WS.Model
         }
     
         public virtual DbSet<Account_QRCode_Template> Account_QRCode_Template { get; set; }
-        public virtual DbSet<CashCouponRecords> CashCouponRecords { get; set; }
+        public virtual DbSet<AutoReply> AutoReply { get; set; }
+        public virtual DbSet<AutoReply_Category> AutoReply_Category { get; set; }
+        public virtual DbSet<CashCouponRecord> CashCouponRecord { get; set; }
         public virtual DbSet<Goods> Goods { get; set; }
-        public virtual DbSet<Goods_Categorys> Goods_Categorys { get; set; }
-        public virtual DbSet<Goods_SendWays> Goods_SendWays { get; set; }
-        public virtual DbSet<OfficialAccounts> OfficialAccounts { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<QRCode_Templates> QRCode_Templates { get; set; }
-        public virtual DbSet<Subscribes> Subscribes { get; set; }
+        public virtual DbSet<Goods_Category> Goods_Category { get; set; }
+        public virtual DbSet<Goods_Order> Goods_Order { get; set; }
+        public virtual DbSet<Goods_SendWay> Goods_SendWay { get; set; }
+        public virtual DbSet<OfficialAccount> OfficialAccount { get; set; }
+        public virtual DbSet<QRCode_Template> QRCode_Template { get; set; }
+        public virtual DbSet<Subscriber> Subscriber { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Template_Category> Template_Category { get; set; }
+        public virtual DbSet<TemplateMessage> TemplateMessage { get; set; }
         public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Users_Roles> Users_Roles { get; set; }
+        public virtual DbSet<Users_Role> Users_Role { get; set; }
     }
 }

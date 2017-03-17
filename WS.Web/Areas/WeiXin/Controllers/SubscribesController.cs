@@ -12,10 +12,10 @@ using WS.ViewModel;
 
 namespace WS.Web.Areas.WeiXin.Controllers
 {
-    public class SubscribesController : Controller
+    public class SubscriberController : Controller
     {
         //
-        // GET: /WeiXin/Subscribes/
+        // GET: /WeiXin/Subscriber/
 
         public ActionResult Index(string code, string state)
         {
@@ -26,7 +26,7 @@ namespace WS.Web.Areas.WeiXin.Controllers
 
             Guid accountid = Guid.Parse(state.Trim());
 
-            OfficialAccounts off = new OfficialAccounts_BLL().Get(a => a.AccountID == accountid);
+            OfficialAccount off = new OfficialAccount_BLL().Get(a => a.AccountID == accountid);
 
             OAuthAccessTokenResult result = new OAuthAccessTokenResult();
             //通过，用code换取access_token
@@ -70,9 +70,9 @@ namespace WS.Web.Areas.WeiXin.Controllers
             Session["OAuthAccessToken"] = result;
             OAuthUserInfo info = OAuthApi.GetUserInfo(result.access_token, result.openid);
 
-            Subscribes_BLL subbll = new Subscribes_BLL();
+            Subscriber_BLL subbll = new Subscriber_BLL();
 
-            Subscribes mysub = subbll.Get(a => a.OpenID == info.openid);
+            Subscriber mysub = subbll.Get(a => a.OpenID == info.openid);
 
             if (mysub != null)
             {
@@ -90,9 +90,9 @@ namespace WS.Web.Areas.WeiXin.Controllers
         public ActionResult IndexById(Guid SubscribeID)
         {
 
-            Subscribes_BLL subbll = new Subscribes_BLL();
+            Subscriber_BLL subbll = new Subscriber_BLL();
 
-            Subscribes mysub = subbll.Get(a => a.SubscribeID == SubscribeID);
+            Subscriber mysub = subbll.Get(a => a.SubscribeID == SubscribeID);
 
             if (mysub != null)
             {
@@ -110,9 +110,9 @@ namespace WS.Web.Areas.WeiXin.Controllers
 
         public ActionResult _LayoutHeader(Guid SubscribeID)
         {
-            Subscribes_BLL subbll = new Subscribes_BLL();
+            Subscriber_BLL subbll = new Subscriber_BLL();
 
-            Subscribes mysub = subbll.Get(a => a.SubscribeID == SubscribeID);
+            Subscriber mysub = subbll.Get(a => a.SubscribeID == SubscribeID);
 
 
             LayoutHeader_ViewModel vm = new LayoutHeader_ViewModel();
@@ -123,7 +123,7 @@ namespace WS.Web.Areas.WeiXin.Controllers
             vm.HeadImgUrl = mysub.HeadImgUrl;
 
             vm.ChildSubscribeCount = subbll.GetCount(a => a.FromOpenID == mysub.OpenID);
-            vm.IsYouZan = mysub.OfficialAccounts.YouZanEnable;
+            vm.IsYouZan = mysub.OfficialAccount.YouZanEnable;
             return PartialView(vm);
 
 
@@ -131,13 +131,13 @@ namespace WS.Web.Areas.WeiXin.Controllers
 
         public ActionResult ScoreRanking(Guid SubscribeID)
         {
-            Subscribes_BLL bll = new Subscribes_BLL();
+            Subscriber_BLL bll = new Subscriber_BLL();
 
-            Subscribes my = bll.Get(a => a.SubscribeID == SubscribeID);
-            List<Subscribes> list = bll.GetPageListOrderBy(1, 20, a => a.AccountID == my.AccountID && a.Score > 0, a => a.Score, false).ToList();
+            Subscriber my = bll.Get(a => a.SubscribeID == SubscribeID);
+            List<Subscriber> list = bll.GetPageListOrderBy(1, 20, a => a.AccountID == my.AccountID && a.Score > 0, a => a.Score, false).ToList();
 
-            AutoMapper.Mapper.CreateMap<Subscribes, Subscribes_ViewModel>();
-            List<Subscribes_ViewModel> vlist = AutoMapper.Mapper.Map<List<Subscribes_ViewModel>>(list);
+            AutoMapper.Mapper.CreateMap<Subscriber, Subscriber_ViewModel>();
+            List<Subscriber_ViewModel> vlist = AutoMapper.Mapper.Map<List<Subscriber_ViewModel>>(list);
 
 
             foreach (var item in vlist)

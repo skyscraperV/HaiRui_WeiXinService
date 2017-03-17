@@ -1,0 +1,130 @@
+﻿@model PagedList<WS.Model.Goods_Order>
+
+@using PagedList
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "订单管理";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+
+
+<ol class="breadcrumb"> 
+    <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;管理中心</a></li>
+    <li class="active"><span class="glyphicon glyphicon-list"></span>&nbsp;&nbsp;订单管理</li>
+</ol>
+
+<div class="panel panel-info">
+    <div class="panel-heading">订单列表</div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <form class="form-inline" action="~/Admin/Goods_Order/List" role="search" method="get">
+                   
+                    <div class="form-group">
+                        <label for="nickname">姓名</label>
+                        <input type="text" name="n" class="form-control" id="nickname">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">电话</label>
+                        <input type="text" name="p" class="form-control" id="phone">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+
+                    <th>
+
+                    </th>
+                    <th>
+                        商品名称
+                    </th>
+                    <th>
+                        联系人
+                    </th>
+                    <th>
+                        联系电话
+                    </th>
+
+                    <th>
+                        地址
+                    </th>
+
+                    <th>
+                        兑换时间
+                    </th>
+                    <th>状态</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img class="img-rounded" src="@Html.QiNiuImage(item.Goods.Image, 50, 50)"/>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Goods.GoodName)<br/>
+                            <span style="font-size: 0.8em; color: #5b5b56">@Html.DisplayFor(modelItem => item.CreateTime)</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ContactPerson)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PhoneNumber)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Address)
+                        </td>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.CreateTime)
+
+
+                        </th>
+
+                        <td >
+                            @if (item.State == "未发货")
+                            {
+                                @Html.ActionLink("发货", "FaHuo", new {id = item.OrderID})
+                            }
+                            else
+                            {
+                                @item.State
+                            }
+
+
+                        </td>
+
+
+                    </tr>
+                }
+                </tbody>
+            </table>
+          
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                @Html.PagedListPager((IPagedList)Model, page => Url.Action("List", new { id = page, n = ViewBag.SearchName, p = ViewBag.SearchPhone }))
+
+
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+
+}

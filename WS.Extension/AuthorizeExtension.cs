@@ -69,10 +69,10 @@ namespace WS.Extension
 
         }
 
-        public Users_Roles GetUserRole(string userName)
+        public Users_Role GetUserRole(string userName)
         {
             Users_BLL ubll = new Users_BLL();
-            Users_Roles user_role = ubll.Get(a => a.UserName == userName).Users_Roles;
+            Users_Role user_role = ubll.Get(a => a.UserName == userName).Users_Role;
 
             return user_role;
         }

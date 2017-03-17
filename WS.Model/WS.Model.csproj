@@ -52,38 +52,50 @@
     <Compile Include="Account_QRCode_Template.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CashCouponRecords.cs">
+    <Compile Include="AutoReply.cs">
+      <DependentUpon>WSDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AutoReply_Category.cs">
+      <DependentUpon>WSDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CashCouponRecord.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Goods.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Goods_Categorys.cs">
+    <Compile Include="Goods_Category.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Goods_SendWays.cs">
+    <Compile Include="Goods_Order.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="OfficialAccounts.cs">
+    <Compile Include="Goods_SendWay.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Orders.cs">
+    <Compile Include="OfficialAccount.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QRCode_Templates.cs">
+    <Compile Include="QRCode_Template.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Subscribes.cs">
+    <Compile Include="Subscriber.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="TemplateMessage.cs">
+      <DependentUpon>WSDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Template_Category.cs">
+      <DependentUpon>WSDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Users_Roles.cs">
+    <Compile Include="Users_Role.cs">
       <DependentUpon>WSDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="WSDBModel.Context.cs">

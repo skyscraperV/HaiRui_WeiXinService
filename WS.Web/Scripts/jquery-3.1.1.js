@@ -10006,7 +10006,7 @@ jQuery.fn.extend( {
 				parentOffset = offsetParent.offset();
 			}
 
-			// Add offsetParent borders
+			// Add offsetParent bGoods_Order
 			parentOffset = {
 				top: parentOffset.top + jQuery.css( offsetParent[ 0 ], "borderTopWidth", true ),
 				left: parentOffset.left + jQuery.css( offsetParent[ 0 ], "borderLeftWidth", true )

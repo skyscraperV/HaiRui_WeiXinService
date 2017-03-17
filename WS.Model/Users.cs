@@ -18,8 +18,8 @@ namespace WS.Model
         public Users()
         {
             this.Goods = new HashSet<Goods>();
-            this.OfficialAccounts = new HashSet<OfficialAccounts>();
-            this.Orders = new HashSet<Orders>();
+            this.Goods_Order = new HashSet<Goods_Order>();
+            this.OfficialAccount = new HashSet<OfficialAccount>();
         }
     
         public System.Guid UserID { get; set; }
@@ -35,9 +35,9 @@ namespace WS.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Goods> Goods { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OfficialAccounts> OfficialAccounts { get; set; }
+        public virtual ICollection<Goods_Order> Goods_Order { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Orders> Orders { get; set; }
-        public virtual Users_Roles Users_Roles { get; set; }
+        public virtual ICollection<OfficialAccount> OfficialAccount { get; set; }
+        public virtual Users_Role Users_Role { get; set; }
     }
 }

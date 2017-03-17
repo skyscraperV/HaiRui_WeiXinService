@@ -51,7 +51,7 @@
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn-group" role="group">
 
-            @Html.ActionLink("我的积分", "IndexById", "Subscribes", new { Area = "WeiXin", SubscribeID = Model.SubscribeID }, new { @class = "btn btn-success" })
+            @Html.ActionLink("我的积分", "IndexById", "Subscriber", new { Area = "WeiXin", SubscribeID = Model.SubscribeID }, new { @class = "btn btn-success" })
         </div>
         <div class="btn-group" role="group">
 
@@ -61,7 +61,7 @@
         </div>
         <div class="btn-group" role="group">
 
-            @Html.ActionLink("积分排行", "ScoreRanking", "Subscribes", new {Area = "WeiXin", SubscribeID = Model.SubscribeID}, new {@class = "btn btn-success"})
+            @Html.ActionLink("积分排行", "ScoreRanking", "Subscriber", new {Area = "WeiXin", SubscribeID = Model.SubscribeID}, new {@class = "btn btn-success"})
 
 
         </div>
@@ -77,7 +77,7 @@
 
         @*<div class="btn-group" role="group">
 
-            @Html.ActionLink("积分排行", "IndexById", "Subscribes", new {Area = "WeiXin", SubscribeID = Model.SubscribeID}, new {@class = "btn btn-success"})
+            @Html.ActionLink("积分排行", "IndexById", "Subscriber", new {Area = "WeiXin", SubscribeID = Model.SubscribeID}, new {@class = "btn btn-success"})
 
 
         </div>*@
