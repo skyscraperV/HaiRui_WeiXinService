@@ -13,22 +13,17 @@
     @Styles.Render("~/Content/css")
     @*<link href="~/Content/liufont.css" rel="stylesheet" />*@
     <style type="text/css">
+        * {
+            font-family: '"Helvetica Neue",Helvetica,Tahoma,Arial,STXihei,"Microsoft YaHei","微软雅黑",sans-serif';
+            /*font-family: 'fzltxh';*/
+        }
 
-
-
-             * {
-                 font-family: '"Helvetica Neue",Helvetica,Tahoma,Arial,STXihei,"Microsoft YaHei","微软雅黑",sans-serif';
-
-                 /*font-family: 'fzltxh';*/
-             }
-
-            .thumbnail {
-                border: 1px solid #389b4f;
-                border-top: 6px solid #389b4f;
-                border-radius: 10px 10px 0 0;
-                box-shadow:5px 5px 20px #3e3e3e;
-
-            }
+        .thumbnail {
+            border: 1px solid #389b4f;
+            border-top: 6px solid #389b4f;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 5px 5px 20px #3e3e3e;
+        }
 
             .thumbnail:hover {
                 /*border: 1px solid #ff6a00;
@@ -36,7 +31,7 @@
                 background-color: #e48948;
                 box-shadow: 0 0 10px #3e3e3e;
             }
-       
+
 
 
         .NotConfigure {
@@ -44,47 +39,54 @@
             border-top: 6px solid #ff0000;
             background-color: #d15b51;
         }
+
         .caption {
             color: white !important;
         }
+
+            .caption h3 {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
     </style>
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @*@Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
-            <a class="navbar-brand" href="~/Home/Index">
-                <span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;<strong class="text-primary">微信</strong><strong>服务平台</strong>
-                （@Html.Action("_GetCurrentAccountName", "OfficialAccount", new { Area = "Admin" })）
-            </a>
-        </div>
-        @*<div class="navbar-collapse collapse">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @*@Html.ActionLink("应用程序名称", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                <a class="navbar-brand" href="~/Home/Index">
+                    <span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;<strong class="text-primary">微信</strong><strong>服务平台</strong>
+                    （@Html.Action("_GetCurrentAccountName", "OfficialAccount", new { Area = "Admin" })）
+                </a>
+            </div>
+            @*<div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("主页", "Index", "Home")</li>
                         <li>@Html.ActionLink("关于", "About", "Home")</li>
                         <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
                     </ul>
                 </div>*@
-        @*<ul class="nav navbar-nav navbar-right">
+            @*<ul class="nav navbar-nav navbar-right">
 
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.Name <span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">@Html.ActionLink("切换公众号", "Select", "OfficialAccount", new { Area = "Admin" }, null)</a></li>
-                        <li><a href="#">@Html.ActionLink("退出", "LogOff", "Users", new { Area = "" }, null)</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.Name <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">@Html.ActionLink("切换公众号", "Select", "OfficialAccount", new { Area = "Admin" }, null)</a></li>
+                            <li><a href="#">@Html.ActionLink("退出", "LogOff", "Users", new { Area = "" }, null)</a></li>
 
-                    </ul>
-                </li>
+                        </ul>
+                    </li>
 
-            </ul>*@
+                </ul>*@
+        </div>
     </div>
-</div>
     <div class="row" style="height:65px;"></div>
     <div class="container">
         <div class="row">
@@ -94,10 +96,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-
-
                 @Html.ActionLink("添加微信公众号", "Add", "OfficialAccount", new { Area = "Admin" }, new { @class = "btn btn-info" })
-
             </div>
         </div>
         <br />
@@ -110,9 +109,11 @@
                     {
                         <div class="thumbnail">
                             @*  <img src="..." alt="...">*@
-                            <div class="caption">
+                            <div class="caption" title="@item.WeiXinName">
                                 <h3>@item.WeiXinName </h3>
                                 <p>微信号：@item.WeiXinNumber</p>
+                                <p>拥有人：@item.Users.UserName</p>
+                                <p style="font-size:12px;color:#808080;">创建时间：@Html.DateFormat(item.CreateTime, "yyyy年MM月dd日HH时mm分")</p>
                                 <p>
                                     @Html.ActionLink("选择", "ConfirmSelect", new { id = item.AccountID }, new { @class = "btn btn-success  btn-sm", role = "button" })
 
@@ -124,9 +125,12 @@
                     {
                         <div class="thumbnail NotConfigure">
                             @*  <img src="..." alt="...">*@
-                            <div class="caption">
+                            <div class="caption" title="@item.WeiXinName">
                                 <h3>@item.WeiXinName </h3>
                                 <p>微信号：@item.WeiXinNumber</p>
+                                <p>拥有者：@item.Users.UserName</p>
+                                <p style="font-size:12px;color:#e4d8d8;">创建时间：@Html.DateFormat(item.CreateTime, "yyyy年MM月dd日HH时mm分")</p>
+
                                 <p>
                                     @Html.ActionLink("选择", "ConfirmSelect", new { id = item.AccountID }, new { @class = "btn btn-success  btn-sm", role = "button" })
 
