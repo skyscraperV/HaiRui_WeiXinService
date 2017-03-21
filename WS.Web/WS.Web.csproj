@@ -201,6 +201,11 @@
     <Content Include="Content\images\shop\bjh\bjh_04.jpg" />
     <Content Include="Content\images\shop\bjh\bjh_05.jpg" />
     <Content Include="Content\images\shop\bjh\bjh_06.jpg" />
+    <Content Include="Content\images\shop\bjh\huanjing\1.jpg" />
+    <Content Include="Content\images\shop\bjh\huanjing\2.jpg" />
+    <Content Include="Content\images\shop\bjh\huanjing\3.jpg" />
+    <Content Include="Content\images\shop\bjh\huanjing\4.jpg" />
+    <Content Include="Content\images\shop\bjh\huanjing\5.jpg" />
     <Content Include="Content\images\shop\bjh\logo.png" />
     <Content Include="Content\images\shop\bjh\qqleft.png" />
     <Content Include="Content\images\shop\bjh\qqright.png" />
@@ -286,6 +291,7 @@
     <Content Include="Areas\WeiXin\Views\Shop\Introduce.cshtml" />
     <Content Include="Areas\WeiXin\Views\Shop\Specialty.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LayoutUnSelect.cshtml" />
+    <Content Include="Areas\WeiXin\Views\Shop\Environment.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />

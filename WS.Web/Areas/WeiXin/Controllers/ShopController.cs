@@ -23,5 +23,10 @@ namespace WS.Web.Areas.WeiXin.Controllers
         {
             return View();
         }
+
+        public ActionResult Environment()
+        {
+            return View();
+        }
     }
 }
